@@ -15,7 +15,7 @@ export default function Home() {
         <div className="w-full md:max-w-xl">
           <TextInput
             type="text"
-            placeholder="Search"
+            placeholder="Search" 
             required
             color="gray"
             className="rounded-[20px] text-2xl"

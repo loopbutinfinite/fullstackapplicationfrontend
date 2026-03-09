@@ -1,14 +1,16 @@
 import { Button, Card, Rating, Avatar } from 'flowbite-react'
 import React from 'react'
 import Image from "next/image";
+// import LeafLetMap from "@/app/components/Map/map.js";
 
 const Business = () => {
     return (
-        <div className="min-h-screen bg-[#2D2D2D] text-whitemd:p-8">
+
+        <div className="min-h-screen bg-[#2D2D2D] text-whitemd:p-8 pb-10">
             <header className='flex pt-5 px-10'>
                 <div className='flex justify-center flex-col mx-auto'>
                     <Image src="/assets/MunchrLogo.png" className="mx-auto" width={70} height={70} alt={"Munchr Logo"}></Image>
-                    <span className="text-3xl font-extrabold text-[#C95A23]">Munchr</span>
+                    <h1 className="text-3xl font-extrabold text-[#C95A23]">Munchr</h1>
                 </div>
                 <div className='flex my-auto gap-5'>
                     <Button color={"#484848"} className='bg-[#484848]'>Log in</Button>
@@ -18,7 +20,7 @@ const Business = () => {
             <div className="mx-10 bg-gray-700 mt-5 rounded-lg overflow-hidden shadow-xl">
                 <header className="relative h-64 md:h-96 w-full">
                     <img
-                        src="/api/placeholder/1200/400"
+                        src="./assets/food-truck-bg.jpg"
                         alt="Food Trucks"
                         className="w-full h-full object-cover opacity-60"
                     />
@@ -26,30 +28,35 @@ const Business = () => {
                         <h1 className="text-3xl md:text-4xl font-bold">La Kora Taco Truck</h1>
                         <div className="flex items-center mt-2 gap-2">
                             <Rating>
+                                <Image src="/assets/rating-icon-colored-outline.png" className="" width={35} height={35} alt={"Munchr Logo"}></Image>
+                                <Image src="/assets/rating-icon-colored-outline.png" className="" width={35} height={35} alt={"Munchr Logo"}></Image>
+                                <Image src="/assets/rating-icon-colored-outline.png" className="" width={35} height={35} alt={"Munchr Logo"}></Image>
+                                <Image src="/assets/rating-icon-colored-outline.png" className="" width={35} height={35} alt={"Munchr Logo"}></Image>
+                                <Image src="/assets/rating-icon-colored-outline.png" className="" width={35} height={35} alt={"Munchr Logo"}></Image>
                             </Rating>
                             <span>4/5</span>
                         </div>
-                        <p className="mt-2 text-sm"><p className="inline mr-1" /> Alitalia and Arch Rd Stockton, CA 95206</p>
+                        <div className="mt-2 text-sm"><p className="inline mr-1" /> Alitalia and Arch Rd Stockton, CA 95206</div>
                         <p className="text-sm"><p className="inline mr-1" /> (209) 594-5758</p>
                         <p className="text-sm"><p className="inline mr-1" /> 9:00 AM - 5:00 PM</p>
                     </div>
                 </header>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 bg-[#484848]">
                     <div className="lg:col-span-2 space-y-12">
-                        <div className="flex gap-4 border-b border-gray-600">
+                        <div className="flex gap-4">
                             <Button color="#C95A23" className='bg-[#C95A23]'>Leave a review</Button>
                             <Button color="#C95A23" className='bg-[#C95A23]'>Favorite</Button>
                         </div>
                         <section>
-                            <h2 className="text-2xl text-white font-bold mb-4">Menu</h2>
+                            <h2 className="text-4xl text-white font-bold mb-4">Menu</h2>
                             <div className="rounded-lg overflow-hidden border border-gray-600">
-                                <img src="/api/placeholder/800/500" alt="Menu Board" className="w-full h-auto" />
+                                <img src="/assets/food-truck-menu.png" alt="Today's Menu for Tacos La Kora" className="w-full h-auto" />
                             </div>
                         </section>
                         <section>
-                            <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+                            <h2 className="text-4xl font-bold mb-4">Reviews</h2>
                             <div className="space-y-6">
-                                <div className="border-b border-gray-600 pb-6">
+                                <div className=" pb-6">
                                     <Rating size="sm">
                                     </Rating>
                                     <div className="flex items-center gap-3 my-3">
@@ -62,11 +69,11 @@ const Business = () => {
                                 </div>
                             </div>
                             <div className="space-y-6">
-                                <div className="border-b border-gray-600 pb-6">
+                                <div className=" pb-6">
                                     <Rating size="sm">
                                     </Rating>
                                     <div className="flex items-center gap-3 my-3">
-                                        <Avatar img="/api/placeholder/40/40" rounded />
+                                        <Avatar img="/assets/stock-image-avater2.jpg" rounded />
                                         <span className="font-medium text-white">Jeremy B.</span>
                                     </div>
                                     <p className="text-white leading-relaxed">
@@ -76,7 +83,7 @@ const Business = () => {
                                 </div>
                             </div>
                             <div className="space-y-6">
-                                <div className="border-b border-gray-600 pb-6">
+                                <div className=" pb-6">
                                     <Rating size="sm">
                                     </Rating>
                                     <div className="flex items-center gap-3 my-3">
@@ -94,13 +101,13 @@ const Business = () => {
                         <section>
                             <h3 className="text-xl font-bold mb-4">Today's Location</h3>
                             <div className="rounded-lg overflow-hidden h-48 bg-gray-600">
-                                <div className="w-full h-full flex items-center justify-center italic text-white">
-                                    [Google Maps Embed Here]
+                                <div className="w-full h-full flex items-center justify-center text-white">
+                                    Google Maps Embed Here
                                 </div>
                             </div>
                         </section>
                         <section>
-                            <h3 className="text-[32px] font-bold mb-4">About the Business</h3>
+                            <h3 className="text-[32px] text-4xl font-bold mb-4">About the Business</h3>
                             <div className="flex items-center gap-3 mb-4">
                                 <Avatar img="/api/placeholder/50/50" rounded />
                                 <div>
@@ -115,6 +122,7 @@ const Business = () => {
                     </div>
                 </div>
             </div>
+            {/* <Map/> */}
         </div>
     )
 }
@@ -124,8 +132,8 @@ export default Business
 
 
 {/* <div className='bg-[#2D2D2D] min-h-screen'>
-            <header className='flex pt-5 px-10'>
-                <div className='flex justify-center flex-col mx-auto'>
+    <header className='flex pt-5 px-10'>
+    <div className='flex justify-center flex-col mx-auto'>
                     <Image src="/assets/MunchrLogo.png" className="mx-auto" width={70} height={70} alt={"Munchr Logo"}></Image>
                     <span className="text-3xl font-extrabold text-[#C95A23]">Munchr</span>
                 </div>

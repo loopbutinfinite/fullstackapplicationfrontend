@@ -1,0 +1,11 @@
+{
+    "foodtrucks":[
+        {
+            "foodtruck_id":0,
+            "foodtruck_name":"Food truck 1",
+            "menu":[
+                
+            ]
+        }
+    ]
+}
