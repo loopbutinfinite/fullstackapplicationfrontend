@@ -1,7 +1,6 @@
 import { Button, Card, Rating, Avatar } from 'flowbite-react'
 import React from 'react'
 import Image from "next/image";
-// import LeafLetMap from "@/app/components/Map/map.js";
 
 const Business = () => {
     return (
@@ -37,8 +36,8 @@ const Business = () => {
                             <span>4/5</span>
                         </div>
                         <div className="mt-2 text-sm"><p className="inline mr-1" /> Alitalia and Arch Rd Stockton, CA 95206</div>
-                        <p className="text-sm"><p className="inline mr-1" /> (209) 594-5758</p>
-                        <p className="text-sm"><p className="inline mr-1" /> 9:00 AM - 5:00 PM</p>
+                        <div className="text-sm"><p className="inline mr-1" /> (209) 594-5758</div>
+                        <div className="text-sm"><p className="inline mr-1" /> 9:00 AM - 5:00 PM</div>
                     </div>
                 </header>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 bg-[#484848]">

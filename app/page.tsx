@@ -1,9 +1,13 @@
 'use client';
 
+import { FoodTrucks } from '@/interfaces/foodtrucks';
 import { Button, TextInput, Dropdown, Card, Badge } from 'flowbite-react';
 import Image from "next/image";
+import foodTrucks from "@/app/utils/foodtrucks.json";
+import MapComponent from '@/components/MapBox/MapComponent';
 
 export default function Home() {
+  const FoodTruckData: FoodTrucks[] = foodTrucks.foodtrucks;
 
   return (
     <div className="min-h-screen bg-[#2D2D2D] p-4 antialiased">
@@ -15,7 +19,7 @@ export default function Home() {
         <div className="w-full md:max-w-xl">
           <TextInput
             type="text"
-            placeholder="Search" 
+            placeholder="Search"
             required
             color="gray"
             className="rounded-[20px] text-2xl"
@@ -26,7 +30,7 @@ export default function Home() {
           <Button color="#C95A23" className="bg-[#C95A23]">Sign Up</Button>
         </div>
       </nav>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-screen mx-5">
+      <div className="grid grid-cols-1 pb-10 lg:grid-cols-12 gap-6 max-w-screen mx-5">
         <div className="lg:col-span-7 bg-[#484848] rounded-2xl  shadow-xl p-6">
           <div className="grid grid-cols-2 items-center gap-4 mb-8">
             <Dropdown label="Category" color="#2D2D2D" size="md" className='bg-[#2D2D2D] text-xl'>
@@ -44,7 +48,7 @@ export default function Home() {
                 <div className="flex flex-col justify-between py-1">
                   <div>
                     <h5 className="text-4xl font-bold tracking-tight text-white">
-                      La Kora Taco Truck
+                      {FoodTruckData[0].foodtruck_name}
                     </h5>
                     <div className='grid'>
 
@@ -70,7 +74,7 @@ export default function Home() {
                 <div className="flex flex-col justify-between py-1">
                   <div>
                     <h5 className="text-4xl font-bold tracking-tight text-white">
-                      La Kora Taco Truck
+                      {FoodTruckData[2].foodtruck_name}
                     </h5>
                     <div className='grid'>
 
@@ -142,12 +146,8 @@ export default function Home() {
             </Card>
           </div>
         </div>
-        <div className="lg:col-span-5 relative min-h-[500px] lg:min-h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-800">
-          <div className="absolute inset-0 bg-[#cbd5e1] flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-gray-400 mb-2">Google Maps Embed API</div>
-            </div>
-          </div>
+        <div className="lg:col-span-5 relative h-[800px] lg:h-full w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-gray-800">
+          <MapComponent />
         </div>
       </div>
     </div>

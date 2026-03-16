@@ -28,7 +28,7 @@ const ChangePassword = () => {
                         <Link href="" className="border-b-2 border-[#C95A23] pb-1 text-neutral-50 hover:text-white">Change Password</Link>
                     </nav>
                 </div>
-                <Card color={"#484848"} className="w-full max-w-xl border-none bg-[#484848] p-3 shadow-2xlm mx-auto mt-15">
+                <Card color={"#484848"} className="w-full max-w-xl border-none dark:bg-[#484848] p-3 shadow-2xlm mx-auto mt-15">
                     <form className="flex flex-col gap-5 bg-[#484848]">
                         <div className=''>
                             <TextInput
