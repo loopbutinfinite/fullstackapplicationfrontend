@@ -36,7 +36,7 @@ export default function Home() {
             </Badge>
           </div>
           <div className="space-y-4 max-h-[70vh] overflow-y-auto pr-2 bg-[#484848] custom-scrollbar">
-            <Card color='#2D2D2D' className="bg-[#2D2D2D] border-none">
+            <Card color='#2D2D2D' className="dark:bg-[#2D2D2D] border-none">
               <div className="flex flex-col sm:flex-row gap-5 bg-[#2D2D2D]">
                 <div className="w-full sm:w-32 h-32 rounded-lg flex items-center justify-center">
                   <Image src="/assets/mexican-food-stock-image.jpg" className="mx-auto" width={180} height={180} alt={"Munchr Logo"}></Image>
@@ -62,7 +62,7 @@ export default function Home() {
                 </div>
               </div>
             </Card>
-            <Card color='#2D2D2D' className="bg-[#2D2D2D] border-none">
+            <Card color='#2D2D2D' className="dark:bg-[#2D2D2D] border-none">
               <div className="flex flex-col sm:flex-row gap-5 bg-[#2D2D2D]">
                 <div className="w-full sm:w-32 h-32 rounded-lg flex items-center justify-center">
                   <Image src="/assets/mexican-food-stock-image.jpg" className="mx-auto" width={180} height={180} alt={"Munchr Logo"}></Image>
@@ -88,7 +88,7 @@ export default function Home() {
                 </div>
               </div>
             </Card>
-            <Card color='#2D2D2D' className="bg-[#2D2D2D] border-none">
+            <Card color='#2D2D2D' className="dark:bg-[#2D2D2D] border-none">
               <div className="flex flex-col sm:flex-row gap-5 bg-[#2D2D2D]">
                 <div className="w-full sm:w-32 h-32 bg-gray-600 rounded-lg flex items-center justify-center">
                   <span className="text-gray-400 text-xs italic">Food Image</span>
@@ -114,7 +114,7 @@ export default function Home() {
                 </div>
               </div>
             </Card>
-            <Card color='#2D2D2D' className="bg-[#2D2D2D] border-none">
+            <Card color='#2D2D2D' className="dark:bg-[#2D2D2D] border-none">
               <div className="flex flex-col sm:flex-row gap-5 bg-[#2D2D2D]">
                 <div className="w-full sm:w-32 h-32 bg-gray-600 rounded-lg flex items-center justify-center">
                   <span className="text-gray-400 text-xs italic">Food Image</span>

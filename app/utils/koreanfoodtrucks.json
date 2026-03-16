@@ -1,0 +1,48 @@
+{
+    "foodtrucks":[
+        {
+            "foodtruck_id": 0,
+            "foodtruck_name":"Seoul Soon Dubu",
+            "street_address": "2041 Pacific Ave",
+            "city": "Stockton", 
+            "state": "CA",
+            "zip_code": "95204",
+            "phone_number": "(209) 462-8989",
+            "hours": "12:00 AM - 5:00 PM",
+            "image": ""
+        },
+        {
+            "foodtruck_id": 1,
+            "foodtruck_name":"Aria Korean Street Food",
+            "street_address": "932 Larkin St",
+            "city": "Stockton", 
+            "state": "CA",
+            "zip_code": "95207",
+            "phone_number": "(209) 292-6914",
+            "hours": "11:00 AM - 10:00 PM",
+            "image": ""
+        },
+        {
+            "foodtruck_id": 2,
+            "foodtruck_name":"Ttobongee Chickem",
+            "street_address": "2742 Naglee Rd",
+            "city": "Stockton", 
+            "state": "CA",
+            "zip_code": "95210",
+            "phone_number": "(209) 229-8049",
+            "hours": "11:00 AM - 8:30 PM",
+            "image": ""
+        },
+        {
+            "foodtruck_id": 3,
+            "foodtruck_name":"Dumpling U",
+            "street_address": "1217 W March Ln",
+            "city": "Sacramento", 
+            "state": "CA",
+            "zip_code": "95814",
+            "phone_number": "(209) 986-7405",
+            "hours": "11:00 AM - 3:00 PM",
+            "image": ""
+        }
+    ]
+} 

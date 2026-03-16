@@ -1,11 +1,48 @@
 {
     "foodtrucks":[
         {
-            "foodtruck_id":0,
-            "foodtruck_name":"Food truck 1",
-            "menu":[
-                
-            ]
+            "foodtruck_id": 0,
+            "foodtruck_name":"La Kora Taco Truck",
+            "street_address": "Alitalia and Arch Rd",
+            "city": "Stockton", 
+            "state": "CA",
+            "zip_code": 95206,
+            "phone_number": "(209) 594-5758",
+            "hours": "9:00 AM - 5:00 PM",
+            "image": ""
+        },
+        {
+            "foodtruck_id": 1,
+            "foodtruck_name":"Tacos a la Lena",
+            "street_address": "1221 W March Ln",
+            "city": "Stockton", 
+            "state": "CA",
+            "zip_code": 95207,
+            "phone_number": "(209) 901-2515",
+            "hours": "11:00 AM - 7:00 PM",
+            "image": ""
+        },
+        {
+            "foodtruck_id": 2,
+            "foodtruck_name":"Tacos El Rey Azteca",
+            "street_address": "3818 E Hammer Ln",
+            "city": "Stockton", 
+            "state": "CA",
+            "zip_code": 95210,
+            "phone_number": "(209) 359-9999",
+            "hours": "11:00 AM - 9:00 PM",
+            "image": ""
+        },
+        {
+            "foodtruck_id": 3,
+            "foodtruck_name":"Tacos El Mayita",
+            "street_address": "1132 16th St",
+            "city": "Sacramento", 
+            "state": "CA",
+            "zip_code": 95814,
+            "phone_number": "(916) 446-0888",
+            "hours": "12:00 AM - 6:00 PM",
+            "image": ""
         }
     ]
 }
