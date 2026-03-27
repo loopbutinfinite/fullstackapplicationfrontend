@@ -16,7 +16,7 @@ export const createAccount = async (user: UserInfo) => {
 
         console.log(message);
         return data.success;
-    }
+    };
 
     const data = await res.json();
     return data.success;
