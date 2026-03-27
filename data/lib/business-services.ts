@@ -103,7 +103,7 @@ export const getBusinessById = async (id:number, token:string) => {
 
         console.log(message);
         return data.success;
-    }
+    };
 
     const data = await res.json();
     return data.success;
