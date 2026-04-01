@@ -1,6 +1,8 @@
 export interface UserModel{
     userId: number,
     userProfileImage: string, 
+    fullName: string, 
+    lastName:string,
     username: string,
     phoneNumber: string,
     email: string, 

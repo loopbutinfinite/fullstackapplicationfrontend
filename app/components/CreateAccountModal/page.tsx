@@ -6,8 +6,6 @@ const CreateAccountModal = () => {
     const [openModal, setOpenModal] = useState(true);
   return (
     <>
-      <Button onClick={() => setOpenModal(true)}>Register</Button>
-      
       <Modal 
         show={openModal} 
         onClose={() => setOpenModal(false)} 
@@ -16,11 +14,13 @@ const CreateAccountModal = () => {
         theme={{
           content: {
             base: "relative h-full w-full p-4 md:h-auto",
-            inner: "relative rounded-lg bg-[#D9D9D9] shadow" // Matches the light gray background
+            inner: "relative rounded-lg bg-[#D9D9D9]" // Matches the light gray background
           }
         }}
       >
-        <ModalHeader/>
+        <ModalHeader className='bg-[#DDDDDD] '>
+          <img src="/assets/MunchrLogo.png" className="mx-38" width={70} height={70} alt={"Munchr Logo"}></img>
+        </ModalHeader>
         <ModalBody className='bg-[#DDDDDD]'>
           <div className="space-y-4 pb-4 bg-[#DDDDDD]">
             {/* 1. Logo and Title Section */}
@@ -28,10 +28,10 @@ const CreateAccountModal = () => {
               <div className="w-32 mb-2">
                 {/* Replace with your Munchr logo component or img */}
                 <div className="text-center">
-                   <h2 className="text-4xl font-black text-[#C45A2D] tracking-tighter">Munchr</h2>
+                   <h2 className="text-4xl text-[#C45A2D] font-bold tracking-tighter">Munchr</h2>
                 </div>
               </div>
-              <p className="text-sm font-semibold text-black">Create an account:</p>
+              <p className="text-sm font-normal text-black">Create an account:</p>
             </div>
 
             {/* 2. Registration Form Fields */}

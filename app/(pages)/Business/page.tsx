@@ -121,7 +121,6 @@ const Business = () => {
                     </div>
                 </div>
             </div>
-            {/* <Map/> */}
         </div>
     )
 }

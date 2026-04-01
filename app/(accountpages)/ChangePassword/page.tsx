@@ -5,6 +5,7 @@ import { Button, Card, TextInput } from 'flowbite-react';
 import { LockIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Avatar, AvatarGroup, AvatarImage, ChakraProvider } from '@chakra-ui/react';
+import CreateAccountModal from '@/app/components/CreateAccountModal/page';
 
 const ChangePassword = () => {
     return (
@@ -33,7 +34,7 @@ const ChangePassword = () => {
                         <div className=''>
                             <TextInput
                                 type="password"
-                                icon={LockIcon}
+                                icon={LockIcon}                                
                                 placeholder="CURRENT PASSWORD"
                                 required
                                 className="[&_input]:bg-[#969696] [&_input]:border-b-[#000000] [&_input]:border-b-3 [&_input]:rounded-none [&_input]:text-white [&_input]:placeholder-[#434343]"
@@ -60,14 +61,11 @@ const ChangePassword = () => {
                         <p className="text-center text-[13px] -mt-3.5 text-white">
                             To change your current password, enter the new password in both fields.
                         </p>
-
-                        {/* Change Button */}
                         <Button
                             type="submit"
                             color={"#C95A23"}
                             className="mt-4 flex w-full h-15 mx-auto text-black items-center justify-center gap-2 rounded-lg bg-[#C95A23] hover:bg-orange-700"
                         >
-                            {/* <HiLockClosed className="h-5 w-5" /> */}
                             <Image className='me-2' src={"/assets/lock-icon-black.png"} width={25} height={25} alt='Lock icon'></Image>
                             <span className="font-normal uppercase text-3xl">Change</span>
                         </Button>

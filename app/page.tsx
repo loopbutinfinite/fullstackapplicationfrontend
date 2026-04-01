@@ -1,14 +1,13 @@
 'use client';
 
-import { FoodTrucks } from '@/interfaces/foodtrucks';
 import { Button, TextInput, Dropdown, Card, Badge } from 'flowbite-react';
 import Image from "next/image";
-import foodTrucks from "@/app/utils/foodtrucks.json";
 import MapComponent from '@/components/MapBox/MapComponent';
+import { BusinessModel } from '@/data/Interfaces/Interfaces';
+import { getAllBusinesses } from '@/data/lib/business-services';
+import { useState } from 'react';
 
 export default function Home() {
-  const FoodTruckData: FoodTrucks[] = foodTrucks.foodtrucks;
-
   return (
     <div className="min-h-screen bg-[#2D2D2D] p-4 antialiased">
       <nav className="flex flex-wrap items-center justify-between mb-6 gap-4 px-6">
@@ -22,18 +21,26 @@ export default function Home() {
             placeholder="Search"
             required
             color="gray"
-            className="rounded-[20px] text-2xl"
+            className="rounded-[20px] [&_input]:bg-[#484848] text-2xl"
           />
         </div>
         <div className="flex gap-2">
-          <Button color="#484848" className='bg-[#484848]'>Log in</Button>
-          <Button color="#C95A23" className="bg-[#C95A23]">Sign Up</Button>
+          <Button href='../LoginUser' color="#484848" className='bg-[#484848]'>Log in</Button>
+          <Button href='../CreateUserAccount' color="#C95A23" className="bg-[#C95A23]">Sign Up</Button>
         </div>
       </nav>
       <div className="grid grid-cols-1 pb-10 lg:grid-cols-12 gap-6 max-w-screen mx-5">
         <div className="lg:col-span-7 bg-[#484848] rounded-2xl  shadow-xl p-6">
           <div className="grid grid-cols-2 items-center gap-4 mb-8">
             <Dropdown label="Category" color="#2D2D2D" size="md" className='bg-[#2D2D2D] text-xl'>
+              <div className='grid grid-rows-auto gap-2 bg-[#2D2D2D]'>
+                <div className='bg-[#C95A23]'>
+                  <p className='py-2 text-center font-bold'>Mexican</p>
+                </div>
+                <div className='bg-[#C95A23]'>
+                  <p className='py-2 text-center font-bold'>Korean</p>
+                </div>
+              </div>
             </Dropdown>
             <Badge size="xl" color='#C95A23' className="px-6 py-2 bg-[#C95A23] text-white border-none rounded-lg text-[32px] mx-auto">
               Mexican
@@ -48,7 +55,6 @@ export default function Home() {
                 <div className="flex flex-col justify-between py-1">
                   <div>
                     <h5 className="text-4xl font-bold tracking-tight text-white">
-                      {FoodTruckData[0].foodtruck_name}
                     </h5>
                     <div className='grid'>
 
@@ -74,7 +80,6 @@ export default function Home() {
                 <div className="flex flex-col justify-between py-1">
                   <div>
                     <h5 className="text-4xl font-bold tracking-tight text-white">
-                      {FoodTruckData[2].foodtruck_name}
                     </h5>
                     <div className='grid'>
 

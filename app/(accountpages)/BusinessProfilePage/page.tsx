@@ -25,14 +25,11 @@ const BusinessProfilePage = () => {
                         <Link href="" className="border-b-2 border-[#C95A23] pb-1 text-neutral-50 hover:text-white">My account</Link>
                         <Link href="../ChangePassword" className="hover:border-b-[#C95A23] hover:bg-[#2D2D2D] border-b-[#3A3A3A] border-b-2">Change Password</Link>
                     </nav>
-                    {/* "border-b-2 border-[#C95A23] pb-1 text-neutral-50 hover:text-white" */}
                 </div>
                 <div className="mx-25 p-8 bg-[#484848] text-white rounded-lg mt-15">
                     {/* Header Section */}
                     <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">Profile</h2>
-
                     <div className="flex flex-col items-center mt-6">
-                        {/* Profile Photo Section */}
                         <p className="text-md mb-4">
                             Your profile photo <span className="text-blue-400 cursor-pointer">(Add/Edit)</span>
                         </p>
@@ -42,8 +39,6 @@ const BusinessProfilePage = () => {
                             placeholderInitials="Avatar"
                             className="mb-8"
                         />
-
-                        {/* Form Fields */}
                         <form className="w-full space-y-4">
                             <div>
                                 <p className="mb-2 block">
@@ -78,7 +73,6 @@ const BusinessProfilePage = () => {
                                     color="#969696"
                                 />
                             </div>
-                            {/* Action Button */}
                             <div className="pt-6">
                                 <Button color={"#C95A23"} className="w-full bg-[#C95A23] h-15 border-none text-black py-1">
                                     <span className="text-xl font-medium">Save Changes</span>
