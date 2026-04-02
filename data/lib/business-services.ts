@@ -2,6 +2,47 @@ import { BusinessModel } from "../Interfaces/Interfaces";
 
 const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/Business/";
 
+// export const getAllBusinesses = async (token: string) => {
+//     const res = await fetch(url + `GetAllBusinesses`, {
+//         method: "GET",
+//         headers: {
+//             "Content-Type":"application/json",
+//             "Authorization":"Bearer " + token,
+//         }
+//     });
+
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.success;
+
+//         console.log(message);
+//         return [];
+//     }
+
+//     const data = await res.json();
+//     return data;
+// };
+
+export const getAllBusinesses = async () => {
+    const res = await fetch(url + `GetAllBusinesses`, {
+        method: "GET",
+        headers: {
+            "Content-Type":"application/json",
+        }
+    });
+
+    if(!res.ok){
+        const data = await res.json();
+        const message = data.success;
+
+        console.log(message);
+        return [];
+    }
+
+    const data = await res.json();
+    return data;
+};
+
 export const createBusiness = async (newBusiness: BusinessModel, token: string) => {
     const res = await fetch(url + "CreateBusiness", {
         method: "POST",
@@ -104,27 +145,6 @@ export const getBusinessById = async (id:number, token:string) => {
         console.log(message);
         return data.success;
     };
-
-    const data = await res.json();
-    return data.success;
-};
-
-export const getAllBusinesses = async (token: string) => {
-    const res = await fetch(url + `GetAllBusinesses`, {
-        method: "GET",
-        headers: {
-            "Content-Type":"application/json",
-            "Authorization":"Bearer " + token,
-        }
-    });
-
-    if(!res.ok){
-        const data = await res.json();
-        const message = data.success;
-
-        console.log(message);
-        return data.success;
-    }
 
     const data = await res.json();
     return data.success;

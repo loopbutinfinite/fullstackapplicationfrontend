@@ -16,7 +16,7 @@ const LoginUser = () => {
                 </div>
             </header>
             <main>
-                <div className='bg-[#191818] ps-25'>
+                <div className='bg-[#191818] ps-35 lg:ps-80'>
                     <h2 className="py-12 text-5xl font-extralight text-neutral-100">
                         Let's Get You Logged In!
                     </h2>
@@ -24,7 +24,7 @@ const LoginUser = () => {
                         <p className="border-b-2 border-[#C95A23] pb-1 text-neutral-50 hover:text-white">Logging in...</p>
                     </nav>
                 </div>
-                <div className="mx-25 p-8 bg-[#484848] text-white rounded-lg mt-15">
+                <div className="mx-40 lg:mx-110 p-8 bg-[#484848] text-white rounded-lg mt-15">
                     <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">Profile</h2>
                     <div className="flex flex-col items-center mt-6">
                         <form className="w-full space-y-4">

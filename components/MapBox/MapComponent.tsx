@@ -28,7 +28,7 @@ export default function MapComponent() {
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
     new mapboxgl.Marker({ color: "purple" })
-      .setLngLat([-121.229088, 37.907669])
+      .setLngLat([-121.229088, 37.907769])
       .addTo(map);
 
     const el = document.createElement("div");
@@ -48,6 +48,7 @@ export default function MapComponent() {
     <div
       ref={mapContainerRef}
       className="absolute inset-0 w-full h-full"
+      // style={{ width: "100%", height: "1000px" }}
     />
   );
 }

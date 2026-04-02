@@ -18,7 +18,7 @@ const UserProfilePage = () => {
                 </div>
             </header>
             <main>
-                <div className='bg-[#191818] ps-25'>
+                <div className='bg-[#191818] ps-35 lg:ps-70'>
                     <h2 className="py-12 text-5xl font-extralight text-neutral-100">
                         Hello, User
                     </h2>
@@ -27,7 +27,7 @@ const UserProfilePage = () => {
                         <Link href="../ChangePassword" className="hover:border-b-[#C95A23] hover:bg-[#2D2D2D] border-b-[#3A3A3A] border-b-2">Change Password</Link>
                     </nav>
                 </div>
-                <div className="mx-25 p-8 bg-[#484848] text-white rounded-lg mt-15">
+                <div className="mx-40 lg:mx-110 p-8 bg-[#484848] text-white rounded-lg mt-15">
                     <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">Profile</h2>
                     <div className="flex flex-col items-center mt-6">
                         <p className="text-md mb-4">
