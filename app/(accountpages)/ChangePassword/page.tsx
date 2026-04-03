@@ -1,10 +1,9 @@
 "use client";
-import React from 'react';
+
 import Image from "next/image";
 import { Avatar, Button, Card, TextInput } from 'flowbite-react';
 import { LockIcon } from 'lucide-react';
 import Link from 'next/link';
-import CreateAccountModal from '@/app/components/CreateAccountModal/page';
 
 const ChangePassword = () => {
     return (
@@ -77,25 +76,3 @@ const ChangePassword = () => {
 }
 
 export default ChangePassword
-
-
-
-
-// <div className='bg-[#2D2D2D] min-h-screen'>
-//     <div className='flex justify-center flex-col mx-auto pt-5 bg-[#191818]'>
-//         <Image src="/assets/MunchrLogo.png" className="mx-auto" width={70} height={70} alt={"Munchr Logo"}></Image>
-//         <span className="text-3xl font-extrabold text-center text-[#C95A23] mb-20">Munchr</span>
-//         <div>
-//             <h3 className='text-[64px] font-extralight mx-40'>Change Password</h3>
-//         </div>
-//     </div>
-//     <div className='bg-[#484848] mx-auto w-[40%]'>
-//         <div className='flex flex-col'>
-//             <input type="text" placeholder='CURRENT PASSWORD' className='bg-[#969696] border-b-3 my-5 text-[#434343] border-[#000000]' />
-//             <input type="text" placeholder='PASSWORD' className='bg-[#969696] border-b-3 mb-5 text-[#434343] border-[#000000]' />
-//             <input type="text" placeholder='CONFIRM PASSWORD' className='bg-[#969696] border-b-3 text-[#434343] border-[#000000]' />
-//             <p className='my-1 mx-auto'>To change your current password, enter the new password in both fields.</p>
-//             <Button color={"#C95A23"} className='bg-[#C95A23]'>Change</Button>
-//         </div>
-//     </div>
-// </div>

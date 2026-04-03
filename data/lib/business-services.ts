@@ -2,7 +2,7 @@ import { BusinessModel } from "../Interfaces/Interfaces";
 
 const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/Business/";
 
-// export const getAllBusinesses = async (token: string) => {
+// export const getAllBusinesses = async (token: string) => {   //This is the original function with token authorization. Commented out and copied without token authorization for testing
 //     const res = await fetch(url + `GetAllBusinesses`, {
 //         method: "GET",
 //         headers: {
@@ -129,12 +129,32 @@ export const getBusinessInfoByName = async (name: BusinessModel, token: string) 
     return data.success;
 };
 
-export const getBusinessById = async (id:number, token:string) => {
+// export const getBusinessById = async (id:number, token:string) => {    //This is the original function with token authorization. Commented out and copied without token authorization for testing
+//     const res = await fetch(url + `GetBusinessById/${id}`, {
+//         method:"GET",
+//         headers: {
+//             "Content-Type":"application/json",
+//             "Authorization":"Bearer " + token,
+//         }
+//     })
+    
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.success;
+
+//         console.log(message);
+//         return data.success;
+//     };
+
+//     const data = await res.json();
+//     return data.success;
+// };
+
+export const getBusinessById = async (id:number) => {
     const res = await fetch(url + `GetBusinessById/${id}`, {
         method:"GET",
         headers: {
-            "Content-Type":"application/json",
-            "Authorization":"Bearer " + token,
+            "Content-Type":"application/json"
         }
     })
     
@@ -143,7 +163,7 @@ export const getBusinessById = async (id:number, token:string) => {
         const message = data.success;
 
         console.log(message);
-        return data.success;
+        return [];
     };
 
     const data = await res.json();
