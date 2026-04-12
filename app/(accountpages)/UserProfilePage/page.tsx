@@ -1,8 +1,6 @@
 "use client";
-import React from 'react';
 import Image from "next/image";
-import { Button, Card, HR, TextInput, Avatar } from 'flowbite-react';
-import { LockIcon } from 'lucide-react';
+import { Button, TextInput, Avatar } from 'flowbite-react';
 import Link from 'next/link';
 
 const UserProfilePage = () => {
@@ -14,7 +12,7 @@ const UserProfilePage = () => {
                     <h1 className="text-3xl font-extrabold text-[#C95A23]">Munchr</h1>
                 </div>
                 <div className='flex my-auto gap-5'>
-                    <Image src="/assets/stock-image-avatar2.jpg" className="mx-auto" width={40} height={40} alt={"Avatar"}></Image>
+                    <Avatar></Avatar>
                 </div>
             </header>
             <main>
@@ -70,6 +68,9 @@ const UserProfilePage = () => {
                         </form>
                     </div>
                 </div>
+                        <div className="place-items-center mt-10">
+                            <Button color={"#b23b3b"} className="bg-[#b23b3b] text-xl">Log Out</Button>
+                        </div>
             </main>
         </div>
     )

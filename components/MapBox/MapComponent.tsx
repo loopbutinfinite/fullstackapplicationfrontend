@@ -26,7 +26,7 @@ export default function MapComponent({businesses}: MapProps) {
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v12",
       center: [-121.293240, 37.954707,],
-      zoom: 12,
+      zoom: 11,
     });
 
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
@@ -44,14 +44,17 @@ export default function MapComponent({businesses}: MapProps) {
 
   const map = mapRef.current;
 
+  let isCancelled = false;
+
   const updateMarkers = async () => {
-    // 🔥 Remove old markers
+    // Remove old markers
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
 
     for (const business of businesses) {
-      const address = `${business.streetName}, ${business.city}, ${business.state} ${business.zipCode}`;
+      if (isCancelled) return;
 
+      const address = `${business.streetName}, ${business.city}, ${business.state} ${business.zipCode}`;
       const coords = await geocodeAddress(address);
       if (!coords) continue;
 
@@ -71,6 +74,10 @@ export default function MapComponent({businesses}: MapProps) {
   };
 
   updateMarkers();
+
+  return () => {
+    isCancelled = true;
+  };
 }, [businesses]);
 
   return (

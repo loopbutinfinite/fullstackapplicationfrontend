@@ -1,8 +1,8 @@
-import { UserInfo, UserModel } from "../Interfaces/Interfaces";
+import { UserAccountInfo, UserInfo, UserModel } from "../Interfaces/Interfaces";
 
 const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/User/";
 
-export const createAccount = async (user: UserInfo) => {
+export const createAccount = async (user: UserAccountInfo) => {
     const res = await fetch(url + "CreateAccount", {
         method: "POST", 
         headers: {
@@ -14,11 +14,12 @@ export const createAccount = async (user: UserInfo) => {
         const data = await res.json();
         const message = data.message;
 
-        console.log(message);
+        console.log(`Account creation faied:${message}`);
         return data.success;
     };
 
     const data = await res.json();
+    console.log(`Account creation successful: ${data.success}`)
     return data.success;
 };
 
