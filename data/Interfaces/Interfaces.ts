@@ -1,45 +1,56 @@
-export interface UserModel{
+export interface UserModel { //This interface is for the data that is being returned from the backend
     userId: number,
-    userProfileImage: string, 
-    fullName: string, 
-    lastName:string,
+    userProfileImage: string,
+    firstName: string,
+    lastName: string,
     username: string,
     phoneNumber: string,
-    email: string, 
-    salt: string, 
+    email: string,
+    salt: string,
     hash: string
     isBusinessOwner: boolean,
 }
 
-export interface Token{
+export interface Token {
     token: string
 }
 
-export interface UserData{
+export interface UserData {
     id: number,
-    usernamer: string
+    username: string
 }
 
-export interface UserInfo{
-    username: string, 
+export interface UserInfo {
+    username: string,
     password: string
 }
 
-export interface ReviewModel{
+export interface UserAccountInfo{ //This is the data being sent to the backend for account creation
+    firstName: string;
+    lastName: string;
+    username: string;
+    phoneNumber: string;
+    email: string;
+    password: string;
+    userProfileImage: string;
+    isBusinessOwner: boolean;
+}
+
+export interface ReviewModel {
     id: number,
-    businessId: number, 
+    businessId: number,
     date: Date,
-    reviewerName: string, 
-    reviewTitle: string, 
+    reviewerName: string,
+    reviewTitle: string,
     reviewDescription: string,
-    reviewScore: number, 
+    reviewScore: number,
     userId: number,
     userReview: UserModel
 }
 
-export interface BusinessModel{
-    businessId: number, 
-    businessName: string, 
+export interface BusinessModel {
+    businessId: number,
+    businessName: string,
     businessHours: string,
     businessPhoneNumber: string,
     businessDescription: string,

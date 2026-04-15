@@ -1,8 +1,6 @@
-import { Avatar, TextInput, Button } from 'flowbite-react'
-import { Link } from 'lucide-react'
-import React from 'react'
+import { TextInput, Button } from 'flowbite-react'
 
-const CreateBusinessAccount = () => {
+const CreateBusiness = () => {
     return (
         <div className="min-h-screen bg-[#2D2D2D] font-sans text-neutral-200 pb-20">
             <header className='flex pt-5 px-10 bg-[#191818]'>
@@ -28,36 +26,16 @@ const CreateBusinessAccount = () => {
                 <div className="mx-40 lg:mx-110 p-8 bg-[#484848] text-white rounded-lg mt-15">
                     <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">Profile</h2>
                     <div className="flex flex-col items-center mt-6">
-                        <p className="text-md mb-4">
-                            Your profile photo <span className="text-blue-400 cursor-pointer">(Add/Edit)</span>
-                        </p>
-                        <Avatar
-                            rounded
-                            size="xl"
-                            placeholderInitials="Avatar"
-                            className="mb-8"
-                        />
                         <form className="w-full space-y-4">
                             <div>
                                 <p className="mb-2 block">
-                                    First Name
+                                    Password
                                 </p>
                                 <TextInput
                                     id="firstName"
                                     sizing="lg"
                                     className="[&_input]:bg-[#969696] [&_input]:border-none [&_input]:rounded-none [&_input]:text-white [&_input]:placeholder-[#434343]"
                                     color="#969696"
-                                />
-                            </div>
-                            <div>
-                                <p className="mb-2 block">
-                                    Last Name
-                                </p>
-                                <TextInput
-                                    id="lastName"
-                                    sizing="lg"
-                                    className="[&_input]:bg-[#969696] [&_input]:border-none [&_input]:rounded-none [&_input]:text-white [&_input]:placeholder-[#434343]"
-                                    color="gray"
                                 />
                             </div>
                             <div>
@@ -140,10 +118,8 @@ const CreateBusinessAccount = () => {
                             </div>
                             <div className="pt-6">
                                 <Button color={"#C95A23"} className="w-full bg-[#C95A23] h-15 border-none text-black py-1">
-                                    <span className="text-xl font-medium">Create Business Account</span>
+                                    <span className="text-xl font-medium">Create Business</span>
                                 </Button>
-                                <a href="../CreateUserAccount"><p className='text-blue-400 hover:underline mt-5'>Not a business owner?</p></a>
-                                <a href="../LoginUser"><p className='text-blue-400 hover:underline mt-5'>Already have an account?</p></a>
                             </div>
                         </form>
                     </div>
@@ -153,4 +129,4 @@ const CreateBusinessAccount = () => {
     )
 }
 
-export default CreateBusinessAccount
+export default CreateBusiness;
