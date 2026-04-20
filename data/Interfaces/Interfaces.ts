@@ -1,4 +1,4 @@
-export interface UserModel { //This interface is for the data that is being returned from the backend
+export interface UserModel {
     userId: number,
     userProfileImage: string,
     firstName: string,
@@ -9,6 +9,9 @@ export interface UserModel { //This interface is for the data that is being retu
     salt: string,
     hash: string
     isBusinessOwner: boolean,
+
+    //What we should add to the backend
+    favorites?: FavoritesModel[]
 }
 
 export interface Token {
@@ -59,5 +62,32 @@ export interface BusinessModel {
     city: string,
     state: string,
     zipCode: number,
-    businessReviews: ReviewModel[]
+    businessReviews: ReviewModel[],
+
+    //What should be added to the backend (the '?' means they are optional)
+    favorites?: FavoritesModel[]    //Placing this here will allow us to see the whole favorited entry from the database, showing the user and business objects, their Id's and the id number of the favorite entry
+}
+
+export interface FetchBusinessData {
+    businessId: number, 
+    businessName: string, 
+    businessHours: string, 
+    businessPhoneNumber: string, 
+    businessDescription: string, 
+    streetName: string, 
+    city: string, 
+    state: string,
+    zipCode: number
+}
+
+//Sample Interface that we need to add in the backend
+//A Many-to-many relationship for favorited businesses
+export interface FavoritesModel{
+    id: number,
+    userId: number, 
+    businessId: number,
+
+    //What should be added to tie favorites to user account and business
+    user?: UserModel, //This is so we can see the whole user object
+    business?: BusinessModel   //This is so we can see the whole business object
 }

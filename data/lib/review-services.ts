@@ -65,26 +65,78 @@ export const GetReviewsByScore = async (scoreNumber: ReviewModel, token: string)
     return data.success;
 };
 
-export const GetReviesByBusinessId = async (businessId:ReviewModel, token: string) => {
-    const res = await fetch(url + `GetReviewsByBusiness/${businessId}`, {
-        method:"GET",
-        headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer " + token,
-        }
-    });
+// export const GetReviesByBusinessId = async (businessId:ReviewModel, token: string) => {
+//     const res = await fetch(url + `GetReviewsByBusiness/${businessId}`, {
+//         method:"GET",
+//         headers:{
+//             "Content-Type":"application/json",
+//             "Authorization":"Bearer " + token,
+//         }
+//     });
 
-    if(!res.ok){
-        const data = await res.json();
-        const message = data.success;
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.success;
 
-        console.log(message);
-        return data.success;
+//         console.log(message);
+//         return data.success;
+//     }
+
+//     const data = await res.json();
+//     return data.success;
+// };
+
+// export const GetReviesByBusinessId = async (businessId: number) => {
+//     const res = await fetch(url + `GetReviewsByBusiness/${businessId}`, {
+//         method:"GET",
+//         headers:{
+//             "Content-Type":"application/json"
+//         }
+//     });
+
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.success;
+
+//         console.log(message);
+//         return data.success;
+//     }
+
+//     const data = await res.json();
+//     return data;
+// };
+
+export const getReviewsByBusinessId = async (
+  businessId: number
+): Promise<ReviewModel[]> => {
+  const res = await fetch(url + `GetReviewsByBusiness/${businessId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    let message = "Failed to fetch reviews";
+    try {
+      const errorData = await res.json();
+      message = errorData.message || message;
+    } catch {
+      // ignore json parse failure
     }
+    throw new Error(message);
+  }
 
-    const data = await res.json();
-    return data.success;
+  const data = await res.json();
+
+  // If your API returns the array directly:
+  return Array.isArray(data) ? data : [];
+
+  // If your API returns { success: [...] }, use this instead:
+  // return Array.isArray(data.success) ? data.success : [];
 };
+
 
 export const AddReview = async (newReview: ReviewModel,token: string) => {
     const res = await fetch(url + `AddReview`, {

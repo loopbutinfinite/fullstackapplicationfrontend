@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect} from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./styles.css";
@@ -47,7 +47,6 @@ export default function MapComponent({businesses}: MapProps) {
   let isCancelled = false;
 
   const updateMarkers = async () => {
-    // Remove old markers
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
 

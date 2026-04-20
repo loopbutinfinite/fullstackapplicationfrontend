@@ -167,7 +167,7 @@ export const getBusinessById = async (id:number) => {
     };
 
     const data = await res.json();
-    return data.success;
+    return data;
 };
 
 export const getBusinessByState = async (stateName: BusinessModel, token: string) => {
@@ -188,7 +188,7 @@ export const getBusinessByState = async (stateName: BusinessModel, token: string
     }
 
     const data = await res.json();
-    return data.success;
+    return data;
 };
 
 export const getBusinessByPostalCode = async (postalCode: BusinessModel, token: string) => {
@@ -209,7 +209,7 @@ export const getBusinessByPostalCode = async (postalCode: BusinessModel, token: 
     }
 
     const data = await res.json();
-    return data.success;
+    return data;
 };
 
 export const getBusinessByCity = async (city: BusinessModel, token: string) => {
