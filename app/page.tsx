@@ -1,18 +1,21 @@
 'use client';
 
-import { Button, TextInput, Dropdown, Card, Badge, DropdownItem } from 'flowbite-react';
+import { Button, TextInput, Dropdown, Card, Badge, DropdownItem, Avatar } from 'flowbite-react';
 import Image from "next/image";
 import MapComponent from '@/components/MapBox/MapComponent';
 import { useEffect, useState } from "react";
 import { getAllBusinesses } from "@/data/lib//business-services";
 import { BusinessModel } from '@/data/Interfaces/Interfaces';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Home() {
   const [businesses, setBusinesses] = useState<BusinessModel[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchEntry, setSearchEntry] = useState("");
   const [searchError, setSearchError] = useState(false);
+
+  const { isLoggedIn, isCheckingAuth } = useAuth();
 
   useEffect(() => {
     const fetchBusinesses = async () => {
@@ -91,10 +94,32 @@ export default function Home() {
             </p>
           )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          {!isCheckingAuth && (
+            isLoggedIn ? (
+              <Link href="/UserProfilePage">
+                <Avatar rounded />
+              </Link>
+            ) : (
+              <>
+                <Link href="/LoginUser">
+                  <Button color="gray" className="bg-[#484848]">
+                    Log in
+                  </Button>
+                </Link>
+                <Link href="/CreateUserAccount">
+                  <Button color="warning" className="bg-[#C95A23]">
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )
+          )}
+        </div>
+        {/* <div className="flex gap-2">
           <Button href='../LoginUser' color="#484848" className='bg-[#484848]'>Log in</Button>
           <Button href='../CreateUserAccount' color="#C95A23" className="bg-[#C95A23]">Sign Up</Button>
-        </div>
+        </div> */}
       </nav>
       <div className="grid grid-cols-1 pb-10 lg:grid-cols-12 gap-6 max-w-screen min-h-[90vh] mx-5">
         <div className="lg:col-span-7 bg-[#484848] rounded-2xl  shadow-xl p-6">

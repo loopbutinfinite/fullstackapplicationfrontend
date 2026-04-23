@@ -29,17 +29,6 @@ const CreateBusiness = () => {
                         <form className="w-full space-y-4">
                             <div>
                                 <p className="mb-2 block">
-                                    Password
-                                </p>
-                                <TextInput
-                                    id="firstName"
-                                    sizing="lg"
-                                    className="[&_input]:bg-[#969696] [&_input]:border-none [&_input]:rounded-none [&_input]:text-white [&_input]:placeholder-[#434343]"
-                                    color="#969696"
-                                />
-                            </div>
-                            <div>
-                                <p className="mb-2 block">
                                     Business Name
                                 </p>
                                 <TextInput

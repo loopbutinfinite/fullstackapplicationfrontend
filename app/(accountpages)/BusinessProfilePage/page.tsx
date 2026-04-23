@@ -7,12 +7,10 @@ const BusinessProfilePage = () => {
         <div className="min-h-screen bg-[#2D2D2D] font-sans text-neutral-200 pb-20 overflow-x-hidden">
             <header className='flex pt-5 px-10 bg-[#191818]'>
                 <div className='flex justify-center flex-col mx-auto'>
-                    <Image src="/assets/MunchrLogo.png" className="mx-auto" width={70} height={70} alt={"Munchr Logo"}></Image>
-                    <h1 className="text-3xl font-extrabold text-[#C95A23]">Munchr</h1>
-                </div>
-                <div className='flex my-auto gap-5'>
-                    {/* <Image src="/assets/stock-image-avatar2.jpg" className="mx-auto" width={40} height={40} alt={"Avatar"}></Image> */}
-                    <Avatar></Avatar>
+                    <Link href={"/"}>
+                        <Image src="/assets/MunchrLogo.png" className="mx-auto" width={70} height={70} alt={"Munchr Logo"}></Image>
+                        <h1 className="text-3xl font-extrabold text-[#C95A23]">Munchr</h1>
+                    </Link>
                 </div>
             </header>
             <main>

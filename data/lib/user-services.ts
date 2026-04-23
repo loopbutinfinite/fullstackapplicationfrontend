@@ -23,25 +23,61 @@ export const createAccount = async (user: UserAccountInfo) => {
     return data.success;
 };
 
+// export const login = async (user: UserInfo) => {
+//     const res = await fetch(url + "Login", {
+//         method: "POST", 
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(user)
+//     });
+
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.message;
+
+//         console.log(message);
+//         return data.success;
+//     }
+
+//     const data = await res.json();
+//     return data.success;
+// };
+
 export const login = async (user: UserInfo) => {
-    const res = await fetch(url + "Login", {
-        method: "POST", 
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user)
-    });
+  const res = await fetch(url + "Login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
 
-    if(!res.ok){
-        const data = await res.json();
-        const message = data.message;
+  let data: any = null;
 
-        console.log(message);
-        return data.success;
-    }
+  try {
+    data = await res.json();
+  } catch {
+    data = null;
+  }
 
-    const data = await res.json();
-    return data.success;
+  if (!res.ok) {
+    console.log(data?.message ?? "Login failed");
+    return {
+      success: false,
+      message: data?.message ?? "Login failed",
+      token: null,
+    };
+  }
+
+  return {
+    success:
+      typeof data === "boolean"
+        ? data
+        : data?.success ?? !!data?.token,
+    message: data?.message ?? "",
+    token: data?.token ?? null,
+  };
 };
 
 export const deleteUser = async (user: UserModel) => {
