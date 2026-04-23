@@ -3,18 +3,34 @@ import Image from "next/image";
 import { Button, TextInput, Avatar } from "flowbite-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
+import { getUserByUsername } from "@/data/lib/user-services";
+import { useStatStyles } from "@chakra-ui/react";
+import { UserModel } from "@/data/Interfaces/Interfaces";
 
 const UserProfilePage = () => {
   const router = useRouter();
   const { isLoggedIn, user, logout, isCheckingAuth } = useAuth();
+  const [userInfo, setUserInfo] = useState<UserModel>();
 
   useEffect(() => {
     if (!isCheckingAuth && !isLoggedIn) {
       router.push("/");
     }
   }, [isCheckingAuth, isLoggedIn, router]);
+
+  useEffect(() => {
+  if (!user?.username) return;
+
+  const fetchUserInfo = async () => {
+    const foundUser = await getUserByUsername(user.username);
+    console.log(foundUser)
+    setUserInfo(foundUser);
+  };
+
+  fetchUserInfo();
+}, [user?.username]);
 
   const handleLogout = async () => {
     await logout();
@@ -101,6 +117,17 @@ const UserProfilePage = () => {
               </div>
 
               <div>
+                <p className="mb-2 block">E-mail</p>
+                <TextInput
+                  id="firstName"
+                  sizing="lg"
+                  value={userInfo?.email || ""}
+                  readOnly
+                  className="[&_input]:bg-[#969696] [&_input]:border-none [&_input]:rounded-none [&_input]:text-white [&_input]:placeholder-[#434343]"
+                />
+              </div>
+
+              {/* <div>
                 <p className="mb-2 block">First Name</p>
                 <TextInput
                   id="firstName"
@@ -116,7 +143,7 @@ const UserProfilePage = () => {
                   sizing="lg"
                   className="[&_input]:bg-[#969696] [&_input]:border-none [&_input]:rounded-none [&_input]:text-white [&_input]:placeholder-[#434343]"
                 />
-              </div>
+              </div> */}
 
               <div className="pt-6">
                 <Button

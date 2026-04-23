@@ -143,7 +143,7 @@ export const getUserByUsername = async (username: string) => {
     }
 
     const data = await res.json();
-    return data.success;
+    return data;
 };
 
 export const IsTokenValid = (): boolean => {
