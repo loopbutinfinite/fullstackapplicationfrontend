@@ -93,18 +93,18 @@ const LoginUser = () => {
       </header>
 
       <main>
-        <div className="bg-[#191818] ps-35 lg:ps-80">
+        <div className="bg-[#191818] ps-35 lg:ps-60 xl:ps-110">
           <h2 className="py-12 text-5xl font-extralight text-neutral-100">
             Let's Get You Logged In!
           </h2>
           <div className="flex justify-start gap-3 text-[16px] font-extralight">
-            <p className="border-b-2 border-[#C95A23] pb-1 text-neutral-50 hover:text-white">
+            <p className="border-b-2 text-lg border-[#C95A23] pb-1 text-neutral-50 hover:text-white">
               Log In
             </p>
           </div>
         </div>
 
-        <div className="mx-40 lg:mx-110 p-8 bg-[#484848] text-white rounded-lg mt-15">
+        <div className="mx-40 lg:mx-80 xl:mx-160 p-8 bg-[#484848] text-white rounded-lg mt-15">
           <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">
             Profile
           </h2>
