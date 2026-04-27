@@ -3,7 +3,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TextInput, Button } from "flowbite-react";
-import { login as loginUser } from "@/data/lib/user-services";
+import { getUserByUsername, login as loginUser } from "@/data/lib/user-services";
 import { UserInfo } from "@/data/Interfaces/Interfaces";
 import { useAuth } from "@/context/AuthContext";
 
@@ -40,40 +40,50 @@ const LoginUser = () => {
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const validationError = validateForm();
-    if (validationError) {
-      setError(validationError);
+  const validationError = validateForm();
+  if (validationError) {
+    setError(validationError);
+    return;
+  }
+
+  setIsLoading(true);
+  setError("");
+
+  try {
+    const result = await loginUser({
+      username: formData.username.trim(),
+      password: formData.password,
+    });
+
+    if (!result.success) {
+      setError(result.message || "Invalid username or password.");
       return;
     }
 
-    setIsLoading(true);
-    setError("");
+    const fullUser = await getUserByUsername(formData.username.trim());
 
-    try {
-      const result = await loginUser({
-        username: formData.username.trim(),
-        password: formData.password,
-      });
-
-      if (!result.success) {
-        setError(result.message || "Invalid username or password.");
-        return;
-      }
-
-      login(result.token ?? "local-session", {
-        username: formData.username.trim(),
-      });
-
-      push("/");
-    } catch (err) {
-      console.error(err);
-      setError("Something went wrong while logging in.");
-    } finally {
-      setIsLoading(false);
+    if (!fullUser || !fullUser.userId) {
+      setError("Login worked, but we could not find your account information.");
+      return;
     }
-  };
+
+    login(result.token ?? "local-session", {
+      userId: fullUser.userId,
+      username: fullUser.username,
+      email: fullUser.email,
+      isBusinessOwner: fullUser.isBusinessOwner,
+    });
+
+    push("/");
+  } catch (err) {
+    console.error(err);
+    setError("Something went wrong while logging in.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#2D2D2D] font-sans text-neutral-200 pb-20">
@@ -104,7 +114,7 @@ const LoginUser = () => {
           </div>
         </div>
 
-        <div className="mx-40 lg:mx-80 xl:mx-160 p-8 bg-[#484848] text-white rounded-lg mt-15">
+        <div className="mx-40 lg:mx-80 xl:mx-130 p-8 bg-[#484848] text-white rounded-lg mt-15">
           <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">
             Profile
           </h2>

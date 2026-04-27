@@ -1,4 +1,4 @@
-import { BusinessModel } from "../Interfaces/Interfaces";
+import { BusinessModel, CreateBusinessRequest } from "../Interfaces/Interfaces";
 
 const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/Business/";
 
@@ -43,26 +43,60 @@ export const getAllBusinesses = async () => {
     return data;
 };
 
-export const createBusiness = async (newBusiness: BusinessModel, token: string) => {
+// export const createBusiness = async (newBusiness: BusinessModel, token: string) => {
+//     const res = await fetch(url + "CreateBusiness", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type":"application/json",
+//             "Authorization":"Bearer " + token,
+//         },
+//         body: JSON.stringify(newBusiness),
+//     });
+
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.success;
+
+//         console.log(message);
+//         return data.success;
+//     }
+
+//     const data = await res.json();
+//     return data.success;
+// };
+
+export const createBusiness = async (newBusiness: CreateBusinessRequest, token: string) => {
     const res = await fetch(url + "CreateBusiness", {
         method: "POST",
         headers: {
-            "Content-Type":"application/json",
-            "Authorization":"Bearer " + token,
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
         },
         body: JSON.stringify(newBusiness),
     });
 
-    if(!res.ok){
-        const data = await res.json();
-        const message = data.success;
+    const responseText = await res.text();
 
-        console.log(message);
-        return data.success;
+    let data;
+
+    try {
+        data = responseText ? JSON.parse(responseText) : null;
+    } catch {
+        data = responseText;
     }
 
-    const data = await res.json();
-    return data.success;
+    if (!res.ok) {
+        console.log("Create business failed:", data);
+        return {
+            success: false,
+            message: typeof data === "string" ? data : data?.message ?? "Failed to create business.",
+        };
+    }
+
+    return {
+        success: true,
+        data,
+    };
 };
 
 export const editBusiness = async (business: BusinessModel, token: string) => {

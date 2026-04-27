@@ -116,10 +116,6 @@ export default function Home() {
             )
           )}
         </div>
-        {/* <div className="flex gap-2">
-          <Button href='../LoginUser' color="#484848" className='bg-[#484848]'>Log in</Button>
-          <Button href='../CreateUserAccount' color="#C95A23" className="bg-[#C95A23]">Sign Up</Button>
-        </div> */}
       </nav>
       <div className="grid grid-cols-1 pb-10 lg:grid-cols-12 gap-6 max-w-screen min-h-[90vh] mx-5">
         <div className="lg:col-span-7 bg-[#484848] rounded-2xl  shadow-xl p-6">

@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type AuthUser = {
+  userId: number,
   username: string;
   email?: string;
   isBusinessOwner?: boolean;
@@ -14,6 +15,7 @@ type AuthContextType = {
   isCheckingAuth: boolean;
   login: (token: string, userData: AuthUser) => void;
   logout: () => void;
+  updateUser: (updatedUser: AuthUser) => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -45,6 +47,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
   };
 
+  const updateUser = (updatedUser: AuthUser) => {
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -53,6 +60,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isCheckingAuth,
         login,
         logout,
+        updateUser
       }}
     >
       {children}

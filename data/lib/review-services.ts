@@ -1,4 +1,4 @@
-import { ReviewModel } from "../Interfaces/Interfaces";
+import { ReviewDataRequest, ReviewModel } from "../Interfaces/Interfaces";
 
 const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/Review/";
 
@@ -130,34 +130,62 @@ export const getReviewsByBusinessId = async (
 
   const data = await res.json();
 
-  // If your API returns the array directly:
   return Array.isArray(data) ? data : [];
-
-  // If your API returns { success: [...] }, use this instead:
-  // return Array.isArray(data.success) ? data.success : [];
 };
 
 
-export const AddReview = async (newReview: ReviewModel,token: string) => {
-    const res = await fetch(url + `AddReview`, {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer " + token,
-        },
-        body: JSON.stringify(newReview)
-    });
+// export const AddReview = async (newReview: ReviewModel,token: string) => {
+//     const res = await fetch(url + `AddReview`, {
+//         method:"POST",
+//         headers:{
+//             "Content-Type":"application/json",
+//             "Authorization":"Bearer " + token,
+//         },
+//         body: JSON.stringify(newReview)
+//     });
 
-    if(!res.ok){
-        const data = await res.json();
-        const message = data.success;
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.success;
 
-        console.log(message);
-        return data.success;
+//         console.log(message);
+//         return data.success;
+//     }
+
+//     const data = await res.json();
+//     return data.success;
+// };
+
+export const AddReview = async (
+  newReview: ReviewDataRequest,
+  token: string
+): Promise<boolean> => {
+  const res = await fetch(url + `AddReview`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(newReview),
+  });
+
+  if (!res.ok) {
+    let message = "Failed to add review";
+
+    try {
+      const data = await res.json();
+      message = data.message || data.success || message;
+    } catch {
+      // ignore json parse failure
     }
 
-    const data = await res.json();
-    return data.success;
+    console.log(message);
+    return false;
+  }
+
+  const data = await res.json();
+
+  return data.success ?? true;
 };
 
 export const EditReview = async (reviewToEdit: ReviewModel, token: string) => {

@@ -5,8 +5,9 @@ import { BusinessModel, ReviewModel } from '@/data/Interfaces/Interfaces';
 import { getBusinessById } from '@/data/lib/business-services';
 import { getReviewsByBusinessId } from '@/data/lib/review-services';
 import { Button, Avatar } from 'flowbite-react';
-import { Bookmark, Heart } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
 import Image from "next/image";
+import Link from 'next/link';
 
 const Business = async ({ params }: { params: Promise<{ businessId: number }> }) => {
   const { businessId } = await params;
@@ -22,8 +23,7 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
   const reviews: ReviewModel[] = await getReviewsByBusinessId(businessId);
 
   const averageRating = calculateAverageRating(reviews);
-  const displayRating = Math.round(averageRating * 10) / 10;
-
+  const displayRating = Math.ceil(Math.round(averageRating * 10) / 10);
   return (
     <div className="min-h-screen bg-[#2D2D2D] text-white md:p-8 pb-10">
       <header className="relative flex items-center pt-5 px-10 pt-10">
@@ -71,9 +71,12 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6 bg-[#484848]">
           <div className="lg:col-span-2 space-y-12">
             <div className="flex gap-4">
-              <Button color="#C95A23" className='bg-[#C95A23]'>Leave a review</Button>
-              {/* <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"}></Bookmark> Favorite</Button> */}
-              <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"} fill='white'></Bookmark>Unfavorite</Button>
+              <Link href={`/LeaveAReview/${businessId}`}>
+                <Button color="#C95A23" className='bg-[#C95A23]'>Leave a review</Button>
+              </Link>
+              {/* <FavoriteButton businessId={businessId}></FavoriteButton> */}
+              <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"}></Bookmark> Favorite</Button>
+              {/* <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"} fill='white'></Bookmark>Unfavorite</Button> */}
             </div>
             <section>
               <h2 className="text-4xl text-white font-bold mb-4">Menu</h2>
@@ -103,9 +106,9 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
                           <span className="font-medium text-white block">
                             {review.reviewerName}
                           </span>
-                          <span className="text-sm text-gray-300">
-                            {/* {review.date} */}
-                          </span>
+                          {/* <span className="text-sm text-gray-300">
+                            {review.date}
+                          </span> */}
                         </div>
                       </div>
                       <h3 className="text-lg font-semibold text-white mb-2">
@@ -134,7 +137,7 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
               <div className="flex items-center gap-3 mb-4">
                 <Avatar img="/api/placeholder/50/50" rounded />
                 <div>
-                  <p className="font-bold">Bartholomew H.</p>
+                  <p className="font-bold">{}</p>
                   <p className="text-xs text-white">Owner</p>
                 </div>
               </div>
