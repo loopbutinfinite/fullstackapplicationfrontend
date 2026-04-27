@@ -84,7 +84,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Avatar, Button, Card, TextInput } from "flowbite-react";
+import { Button, Card, TextInput } from "flowbite-react";
 import { LockIcon } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
