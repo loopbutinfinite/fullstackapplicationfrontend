@@ -101,7 +101,7 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
                       </div>
 
                       <div className="flex items-center gap-3 my-3">
-                        <Avatar img="/api/placeholder/40/40" rounded />
+                        <Avatar rounded />
                         <div>
                           <span className="font-medium text-white block">
                             {review.reviewerName}
@@ -135,7 +135,7 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
             <section>
               <h3 className="text-[32px] font-bold mb-4">About the Business</h3>
               <div className="flex items-center gap-3 mb-4">
-                <Avatar img="/api/placeholder/50/50" rounded />
+                <Avatar  rounded />
                 <div>
                   <p className="font-bold">{}</p>
                   <p className="text-xs text-white">Owner</p>
