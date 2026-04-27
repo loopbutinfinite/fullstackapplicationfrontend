@@ -4,14 +4,14 @@ const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.n
 
 export const GetFavorites = async (token: string) => {
     const res = await fetch(url + "GetFavorites", {
-        method: "GET", 
-        headers:{
-            "Content-Type": "application/json", 
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
             "Authorization": "Bearer " + token,
         }
     });
 
-    if(!res.ok){
+    if (!res.ok) {
         const data = await res.json();
         const message = data.success;
 
@@ -25,14 +25,14 @@ export const GetFavorites = async (token: string) => {
 
 export const GetFavoritesById = async (token: string, id: FavoritesModel) => {
     const res = await fetch(url + `GetFavoritesById/${id}`, {
-        method: "GET", 
-        headers:{
-            "Content-Type": "application/json", 
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
             "Authorization": "Bearer " + token,
         }
     });
 
-    if(!res.ok){
+    if (!res.ok) {
         const data = await res.json();
         const message = data.success;
 
@@ -46,14 +46,14 @@ export const GetFavoritesById = async (token: string, id: FavoritesModel) => {
 
 export const GetFavoritesByBusinessId = async (token: string, BusinessId: FavoritesModel) => {
     const res = await fetch(url + `GetFavoritesByBusinessId/${BusinessId}`, {
-        method: "GET", 
-        headers:{
-            "Content-Type": "application/json", 
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
             "Authorization": "Bearer " + token,
         }
     });
 
-    if(!res.ok){
+    if (!res.ok) {
         const data = await res.json();
         const message = data.success;
 
@@ -65,38 +65,56 @@ export const GetFavoritesByBusinessId = async (token: string, BusinessId: Favori
     return data;
 }
 
-export const GetFavoritesByUserId = async (token: string, UserId: FavoritesModel) => {
-    const res = await fetch(url + `GetFavoritesByUserId/${UserId}`, {
-        method: "GET", 
-        headers:{
-            "Content-Type": "application/json", 
-            "Authorization": "Bearer " + token,
-        }
+// export const GetFavoritesByUserId = async (token: string, UserId: FavoritesModel) => {
+//     const res = await fetch(url + `GetFavoritesByUserId/${UserId}`, {
+//         method: "GET", 
+//         headers:{
+//             "Content-Type": "application/json", 
+//             "Authorization": "Bearer " + token,
+//         }
+//     });
+
+//     if(!res.ok){
+//         const data = await res.json();
+//         const message = data.success;
+
+//         console.log(message);
+//         return data.success;
+//     }
+
+//     const data = await res.json();
+//     return data;
+// }
+
+export const GetFavoritesByUserId = async (
+    token: string,
+    userId: number
+): Promise<FavoritesModel[]> => {
+    const res = await fetch(`${url}GetFavoritesByUserId/${userId}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
     });
 
-    if(!res.ok){
-        const data = await res.json();
-        const message = data.success;
-
-        console.log(message);
-        return data.success;
+    if (!res.ok) {
+        throw new Error("Failed to get favorites.");
     }
 
-    const data = await res.json();
-    return data;
-}
+    return await res.json();
+};
 
 export const AddFavorite = async (newFavorite: FavoritesModel, token: string) => {
     const res = await fetch(url + `AddFavorites`, {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer " + token,
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
         },
         body: JSON.stringify(newFavorite)
     });
 
-    if(!res.ok){
+    if (!res.ok) {
         const data = await res.json();
         const message = data.success;
 
@@ -113,12 +131,12 @@ export const DeleteFavorite = async (favorite: FavoritesModel, token: string) =>
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
-            "Authorization":"Bearer " + token,
+            "Authorization": "Bearer " + token,
         },
         body: JSON.stringify(favorite)
     });
 
-    if(!res.ok){
+    if (!res.ok) {
         const data = await res.json();
         const message = data.message;
 
