@@ -75,16 +75,16 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
                 <Button color="#C95A23" className='bg-[#C95A23]'>Leave a review</Button>
               </Link>
               {/* <FavoriteButton businessId={businessId}></FavoriteButton> */}
-              <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"}></Bookmark> Favorite</Button>
+              {/* <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"}></Bookmark> Favorite</Button> */}
               {/* <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"} fill='white'></Bookmark>Unfavorite</Button> */}
             </div>
             <section>
               <h2 className="text-4xl text-white font-bold mb-4">Menu</h2>
-              <div className="rounded-lg overflow-hidden border border-gray-600">
+              <div className="rounded-lg overflow-hidden">
                 <img
                   src="/assets/food-truck-menu.png"
                   alt={`Today's Menu for ${businessData.businessName}`}
-                  className="w-full h-auto"
+                  className="w-[75%] h-auto"
                 />
               </div>
             </section>
@@ -106,9 +106,9 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
                           <span className="font-medium text-white block">
                             {review.reviewerName}
                           </span>
-                          {/* <span className="text-sm text-gray-300">
-                            {review.date}
-                          </span> */}
+                          <span className="text-sm text-gray-300">
+                            {new Date(review.date).toLocaleDateString()}
+                          </span>
                         </div>
                       </div>
                       <h3 className="text-lg font-semibold text-white mb-2">
@@ -135,9 +135,9 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
             <section>
               <h3 className="text-[32px] font-bold mb-4">About the Business</h3>
               <div className="flex items-center gap-3 mb-4">
-                <Avatar  rounded />
+                <Avatar rounded />
                 <div>
-                  <p className="font-bold">{}</p>
+                  <p className="font-bold">{ }</p>
                   <p className="text-xs text-white">Owner</p>
                 </div>
               </div>

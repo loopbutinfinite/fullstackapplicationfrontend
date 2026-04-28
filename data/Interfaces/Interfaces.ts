@@ -103,6 +103,11 @@ export interface FavoritesModel {
     business?: BusinessModel   //This is so we can see the whole business object
 }
 
+export interface FavoriteCreateRequest{
+    userId: number, 
+    businessId: number
+}
+
 export interface ReviewDataRequest {
     businessId: number;
     date: string;
@@ -123,4 +128,19 @@ export interface CreateBusinessRequest {
     city: string;
     state: string;
     zipCode: number;
+}
+
+export interface MenuItemModel {
+  id: number;
+  businessId: number;
+  name: string;
+  description: string;
+  price: number;
+}
+
+export interface CreateMenuItemModel {
+  businessId: number;
+  name: string;
+  description: string;
+  price: number;
 }

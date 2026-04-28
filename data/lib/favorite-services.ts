@@ -1,4 +1,4 @@
-import { FavoritesModel } from "../Interfaces/Interfaces";
+import { FavoriteCreateRequest, FavoritesModel } from "../Interfaces/Interfaces";
 
 const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/Favorite/";
 
@@ -65,44 +65,26 @@ export const GetFavoritesByBusinessId = async (token: string, BusinessId: Favori
     return data;
 }
 
-// export const GetFavoritesByUserId = async (token: string, UserId: FavoritesModel) => {
-//     const res = await fetch(url + `GetFavoritesByUserId/${UserId}`, {
-//         method: "GET", 
-//         headers:{
-//             "Content-Type": "application/json", 
-//             "Authorization": "Bearer " + token,
-//         }
-//     });
-
-//     if(!res.ok){
-//         const data = await res.json();
-//         const message = data.success;
-
-//         console.log(message);
-//         return data.success;
-//     }
-
-//     const data = await res.json();
-//     return data;
-// }
-
-export const GetFavoritesByUserId = async (
-    token: string,
-    userId: number
-): Promise<FavoritesModel[]> => {
-    const res = await fetch(`${url}GetFavoritesByUserId/${userId}`, {
+export const GetFavoritesByUserId = async (token: string, UserId: FavoritesModel) => {
+    const res = await fetch(url + `GetFavoritesByUserId/${UserId}`, {
         method: "GET",
         headers: {
-            Authorization: `Bearer ${token}`,
-        },
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+        }
     });
 
     if (!res.ok) {
-        throw new Error("Failed to get favorites.");
+        const data = await res.json();
+        const message = data.success;
+
+        console.log(message);
+        return data.success;
     }
 
-    return await res.json();
-};
+    const data = await res.json();
+    return data;
+}
 
 export const AddFavorite = async (newFavorite: FavoritesModel, token: string) => {
     const res = await fetch(url + `AddFavorites`, {
