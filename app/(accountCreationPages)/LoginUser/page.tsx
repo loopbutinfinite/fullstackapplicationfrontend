@@ -40,50 +40,50 @@ const LoginUser = () => {
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const validationError = validateForm();
-  if (validationError) {
-    setError(validationError);
-    return;
-  }
-
-  setIsLoading(true);
-  setError("");
-
-  try {
-    const result = await loginUser({
-      username: formData.username.trim(),
-      password: formData.password,
-    });
-
-    if (!result.success) {
-      setError(result.message || "Invalid username or password.");
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
-    const fullUser = await getUserByUsername(formData.username.trim());
+    setIsLoading(true);
+    setError("");
 
-    if (!fullUser || !fullUser.userId) {
-      setError("Login worked, but we could not find your account information.");
-      return;
+    try {
+      const result = await loginUser({
+        username: formData.username.trim(),
+        password: formData.password,
+      });
+
+      if (!result.success) {
+        setError(result.message || "Invalid username or password.");
+        return;
+      }
+
+      const fullUser = await getUserByUsername(formData.username.trim());
+
+      if (!fullUser || !fullUser.userId) {
+        setError("Login worked, but we could not find your account information.");
+        return;
+      }
+
+      login(result.token ?? "local-session", {
+        userId: fullUser.userId,
+        username: fullUser.username,
+        email: fullUser.email,
+        isBusinessOwner: fullUser.isBusinessOwner,
+      });
+
+      push("/");
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong while logging in.");
+    } finally {
+      setIsLoading(false);
     }
-
-    login(result.token ?? "local-session", {
-      userId: fullUser.userId,
-      username: fullUser.username,
-      email: fullUser.email,
-      isBusinessOwner: fullUser.isBusinessOwner,
-    });
-
-    push("/");
-  } catch (err) {
-    console.error(err);
-    setError("Something went wrong while logging in.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
     <div className="min-h-screen bg-[#2D2D2D] font-sans text-neutral-200 pb-20">
@@ -103,8 +103,8 @@ const LoginUser = () => {
       </header>
 
       <main>
-        <div className="bg-[#191818] ps-35 lg:ps-60 xl:ps-110">
-          <h2 className="py-12 text-5xl font-extralight text-neutral-100">
+        <div className="bg-[#191818] ps-15 md:ps-30 lg:ps-60 xl:ps-110">
+          <h2 className="py-12 text-3xl md:text-5xl font-extralight text-neutral-100">
             Let's Get You Logged In!
           </h2>
           <div className="flex justify-start gap-3 text-[16px] font-extralight">
@@ -113,12 +113,10 @@ const LoginUser = () => {
             </p>
           </div>
         </div>
-
-        <div className="mx-40 lg:mx-80 xl:mx-130 p-8 bg-[#484848] text-white rounded-lg mt-15">
+        <div className="mx-15 md:mx-40 lg:mx-80 xl:mx-130 p-8 bg-[#484848] text-white rounded-lg mt-15">
           <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">
             Profile
           </h2>
-
           <div className="flex flex-col items-center mt-6">
             <form onSubmit={handleSubmit} className="w-full space-y-4">
               <div>
@@ -132,7 +130,6 @@ const LoginUser = () => {
                   color="gray"
                 />
               </div>
-
               <div>
                 <p className="mb-2 block">Password</p>
                 <TextInput

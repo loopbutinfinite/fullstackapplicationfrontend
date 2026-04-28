@@ -412,10 +412,9 @@ export default function CreateAccountPage() {
                     </a>
                 </div>
             </header>
-
             <main>
-                <div className="bg-[#191818] ps-35 lg:ps-80">
-                    <h2 className="py-12 text-5xl font-extralight text-neutral-100">
+                <div className="bg-[#191818] ps-10 md:ps-30 lg:ps-80">
+                    <h2 className="py-8 md:py-12 text-3xl md:text-5xl font-extralight text-neutral-100">
                         Let's Set Up Your Account!
                     </h2>
 
@@ -426,7 +425,7 @@ export default function CreateAccountPage() {
                     </nav>
                 </div>
 
-                <div className="mx-40 lg:mx-110 p-8 bg-[#484848] text-white rounded-lg mt-15">
+                <div className="mx-10 md:mx-40 lg:mx-110 p-8 bg-[#484848] text-white rounded-lg mt-15">
                     <h2 className="text-2xl font-normal border-b-2 border-[#ffffff77]">
                         Profile
                     </h2>

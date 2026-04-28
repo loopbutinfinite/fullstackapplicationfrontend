@@ -26,8 +26,8 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
   const displayRating = Math.ceil(Math.round(averageRating * 10) / 10);
   return (
     <div className="min-h-screen bg-[#2D2D2D] text-white md:p-8 pb-10">
-      <header className="relative flex items-center pt-5 px-10 pt-10">
-        <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+      <header className="relative flex items-center px-10 pt-10 flex-col md:flex-row-reverse">
+        <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center order-1 md:order-2">
           <a href="/" className="flex flex-col items-center">
             <Image
               src="/assets/MunchrLogo.png"
@@ -39,21 +39,23 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
             <h1 className="text-3xl mb-10 font-extrabold text-[#C95A23]">Munchr</h1>
           </a>
         </div>
-        <HeaderAuthButtons></HeaderAuthButtons>
+        <div className='order-2 mt-25 md:mt-0 md:order-1'>
+          <HeaderAuthButtons></HeaderAuthButtons>
+        </div>
       </header>
       <div className="mx-10 bg-gray-700 mt-5 rounded-lg overflow-hidden shadow-xl">
-        <header className="relative h-64 md:h-96 w-full">
+        <header className="relative h-64 md:h-70 lg:h-96 w-full">
           <img
             src="/assets/food-truck-bg.jpg"
             alt="Food Trucks"
             className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full">
-            <h1 className="text-8xl md:text-4xl font-bold">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
               {businessData.businessName}
             </h1>
             <div className="flex items-center mt-2 gap-3">
-              <RatingStars rating={averageRating} size={35} />
+              <RatingStars rating={averageRating} size={30} />
               <span className="text-lg font-semibold">
                 {displayRating}/5
               </span>
@@ -79,7 +81,7 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
               {/* <Button color="#C95A23" className='bg-[#C95A23]'> <Bookmark strokeWidth={"1px"} fill='white'></Bookmark>Unfavorite</Button> */}
             </div>
             <section>
-              <h2 className="text-4xl text-white font-bold mb-4">Menu</h2>
+              <h2 className="text-[28px] lg:text-[32px] text-white font-bold mb-4">Menu</h2>
               <div className="rounded-lg overflow-hidden">
                 <img
                   src="/assets/food-truck-menu.png"
@@ -89,7 +91,7 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
               </div>
             </section>
             <section>
-              <h2 className="text-4xl font-bold mb-4">Reviews</h2>
+              <h2 className="text-[28px] lg:text-[32px] font-bold mb-4">Reviews</h2>
               {reviews.length === 0 ? (
                 <p className="text-white">No reviews yet.</p>
               ) : (
@@ -133,7 +135,7 @@ const Business = async ({ params }: { params: Promise<{ businessId: number }> })
               </div>
             </section>
             <section>
-              <h3 className="text-[32px] font-bold mb-4">About the Business</h3>
+              <h3 className="text-[28px] lg:text-[32px] font-bold mb-4">About the Business</h3>
               <div className="flex items-center gap-3 mb-4">
                 <Avatar rounded />
                 <div>
