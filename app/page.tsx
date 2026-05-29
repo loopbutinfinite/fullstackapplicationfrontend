@@ -201,17 +201,17 @@ export default function Home() {
           <div className="flex items-center mb-8">
             <div className="relative flex items-start w-full min-h-[80px]">
               <div className="absolute left-0 top-0">
-                <Dropdown label="Category" color="#2D2D2D" size="md" className="bg-[#2D2D2D] md:text-xl text-sm px-2 md:px-6">
-                  <DropdownItem onClick={() => setSelectedCategory("All")} className="bg-[#C95A23] font-bold text-lg dark:bg-[#C95A23]">
+                <Dropdown label="Category" color="gray" size="md" className="bg-[#2D2D2D] dark:bg-[#2D2D2D] text-white md:text-xl text-sm px-2 md:px-6" theme={{ content: "py-1 bg-[#2D2D2D] rounded-lg" }}>
+                  <DropdownItem onClick={() => setSelectedCategory("All")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     All
                   </DropdownItem>
-                  <DropdownItem onClick={() => setSelectedCategory("Mexican")} className="bg-[#C95A23] font-bold text-lg">
+                  <DropdownItem onClick={() => setSelectedCategory("Mexican")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     Mexican
                   </DropdownItem>
-                  <DropdownItem onClick={() => setSelectedCategory("Chinese")} className="bg-[#C95A23] font-bold text-lg">
+                  <DropdownItem onClick={() => setSelectedCategory("Chinese")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     Chinese
                   </DropdownItem>
-                  <DropdownItem onClick={() => setSelectedCategory("American")} className="bg-[#C95A23] font-bold text-lg">
+                  <DropdownItem onClick={() => setSelectedCategory("American")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     American
                   </DropdownItem>
                 </Dropdown>
@@ -224,34 +224,36 @@ export default function Home() {
               <div className="absolute right-0 top-0 flex flex-col items-end gap-3">
                 <Dropdown
                   label={sortBy === "name" ? "Sort: Name" : "Sort: Review Score"}
-                  color="#2D2D2D"
+                  color="gray"
                   size="md"
-                  className="bg-[#2D2D2D] md:text-xl text-sm px-2 md:px-6"
+                  className="bg-[#2D2D2D] dark:bg-[#2D2D2D] text-white md:text-xl text-sm px-2 md:px-6"
+                  theme={{ content: "py-1 bg-[#2D2D2D] rounded-lg" }}
                 >
-                  <DropdownItem onClick={() => setSortBy("name")} className="bg-[#C95A23] font-bold text-lg">
+                  <DropdownItem onClick={() => setSortBy("name")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     Name
                   </DropdownItem>
-                  <DropdownItem onClick={() => setSortBy("reviewScore")} className="bg-[#C95A23] font-bold text-lg">
+                  <DropdownItem onClick={() => setSortBy("reviewScore")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     Review Score
                   </DropdownItem>
                 </Dropdown>
                 <Dropdown
                   label={sortOrder === "asc" ? "Order: Ascending" : "Order: Descending"}
-                  color="#2D2D2D"
+                  color="gray"
                   size="md"
-                  className="bg-[#2D2D2D] md:text-xl text-sm px-2 md:px-6"
+                  className="bg-[#2D2D2D] dark:bg-[#2D2D2D] text-white md:text-xl text-sm px-2 md:px-6"
+                  theme={{ content: "py-1 bg-[#2D2D2D] rounded-lg" }}
                 >
-                  <DropdownItem onClick={() => setSortOrder("asc")} className="bg-[#C95A23] font-bold text-lg">
+                  <DropdownItem onClick={() => setSortOrder("asc")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     Ascending
                   </DropdownItem>
-                  <DropdownItem onClick={() => setSortOrder("desc")} className="bg-[#C95A23] font-bold text-lg">
+                  <DropdownItem onClick={() => setSortOrder("desc")} className="bg-[#C95A23] hover:!bg-[#b34e1f] focus:!bg-[#b34e1f] text-white font-bold text-lg dark:bg-[#C95A23] dark:hover:!bg-[#b34e1f]">
                     Descending
                   </DropdownItem>
                 </Dropdown>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-h-[70vh] overflow-y-auto bg-[#484848] custom-scrollbar order-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-h-[70vh] overflow-y-auto overflow-x-hidden bg-[#484848] custom-scrollbar order-2 px-1">
             {searchedBusinesses.map((business) => {
               const reviewScore = getBusinessReviewScore(business);
               const reviewCount = reviewCounts[business.businessId] ?? 0;

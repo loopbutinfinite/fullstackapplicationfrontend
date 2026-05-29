@@ -15,7 +15,7 @@ import { Button, Avatar } from "flowbite-react";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import EditBusinessPanel from "../EditBusinessPage/page";
+import EditBusinessPanel from "@/components/EditBusinessPanel/page";
 
 const Business = () => {
   const params = useParams();
@@ -27,12 +27,8 @@ const Business = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showEditPanel, setShowEditPanel] = useState(false);
   const [ownerName, setOwnerName] = useState("");
-  // Bumped when the owner edits the menu so the public list re-fetches.
   const [menuRefreshKey, setMenuRefreshKey] = useState(0);
 
-  // Determine ownership from the backend-provided OwnerId on the business
-  // record, compared against the logged-in user's id. No more localStorage.
-  // Number() guards against either id arriving as a string from JSON.
   const isOwner =
     isLoggedIn &&
     !isCheckingAuth &&
@@ -60,7 +56,6 @@ const Business = () => {
     if (businessId) fetchData();
   }, [businessId]);
 
-  // Look up the owner's name once we know which user owns this business.
   useEffect(() => {
     const ownerId = businessData?.ownerId;
     if (ownerId == null) {
@@ -94,7 +89,6 @@ const Business = () => {
 
   const handleBusinessUpdated = (updated: BusinessModel) => {
     setBusinessData(updated);
-    // Keep the panel open briefly to show success, then auto-close
     setTimeout(() => setShowEditPanel(false), 1200);
   };
 
@@ -135,7 +129,6 @@ const Business = () => {
       </header>
 
       <div className="mx-10 bg-gray-700 mt-5 rounded-lg overflow-hidden shadow-xl">
-        {/* Hero Banner */}
         <header className="relative h-64 md:h-70 lg:h-96 w-full">
           <img
             src="/assets/food-truck-bg.jpg"
@@ -168,7 +161,6 @@ const Business = () => {
             </div>
           </div>
 
-          {/* Edit button — pinned to the bottom-right corner of the banner, owner only */}
           {isOwner && (
             <button
               onClick={() => setShowEditPanel(true)}
@@ -237,7 +229,6 @@ const Business = () => {
           </div>
 
           <div className="space-y-8">
-            {/* Map section — receives live businessData so it re-geocodes when location updates */}
             <section>
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold">Today's Location</h3>
@@ -253,7 +244,6 @@ const Business = () => {
               </div>
               <div className="rounded-lg overflow-hidden h-48 xl:h-68 bg-gray-600">
                 <div className="rounded-lg overflow-hidden h-64 bg-gray-600 relative xl:h-68">
-                  {/* Key on businessData address so map remounts when location changes */}
                   <SingleBusinessMapComponent
                     key={`${businessData.streetName}-${businessData.city}-${businessData.zipCode}`}
                     business={businessData}
@@ -281,7 +271,6 @@ const Business = () => {
         </div>
       </div>
 
-      {/* Edit Panel — rendered outside the card so it overlays the full page */}
       {showEditPanel && businessData && (
         <EditBusinessPanel
           business={businessData}

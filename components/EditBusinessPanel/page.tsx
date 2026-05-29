@@ -11,7 +11,6 @@ interface EditBusinessPanelProps {
   business: BusinessModel;
   onSave: (updatedBusiness: BusinessModel) => void;
   onClose: () => void;
-  // Called when the owner adds/removes a menu item, so the public page can refresh.
   onMenuChange?: () => void;
 }
 
@@ -100,15 +99,11 @@ export default function EditBusinessPanel({
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
         onClick={onClose}
       />
-
-      {/* Panel */}
       <div className="fixed right-0 top-0 h-full w-full max-w-md bg-[#2a2a2a] z-50 shadow-2xl flex flex-col animate-slide-in-right">
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#444] bg-[#222]">
           <div>
             <h2 className="text-lg font-bold text-white">Edit Business</h2>
@@ -129,8 +124,6 @@ export default function EditBusinessPanel({
             </svg>
           </button>
         </div>
-
-        {/* Tabs */}
         <div className="flex border-b border-[#444] bg-[#222]">
           <button
             onClick={() => setActiveTab("location")}
@@ -176,8 +169,6 @@ export default function EditBusinessPanel({
             Menu
           </button>
         </div>
-
-        {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
           {activeTab === "location" && (
             <>
@@ -315,8 +306,6 @@ export default function EditBusinessPanel({
             </>
           )}
         </div>
-
-        {/* Footer */}
         <div className="px-6 py-4 border-t border-[#444] bg-[#222] space-y-2">
           {error && (
             <p className="text-[#ff6b6b] text-xs text-center font-medium">{error}</p>

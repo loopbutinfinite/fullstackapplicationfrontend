@@ -17,9 +17,9 @@ import UseMyLocationButton from "@/components/UseMyLocationButton/page";
 import { ReverseGeocodeResult } from "@/data/lib/geocoding-services";
 import MenuItemsManager from "@/components/MenuItemsManager/page";
 
-type FoodCategory = "Chinese" | "American" | "Mexican" | "Indian" | "Italian" | "Korean" | "Other";
- 
-const CATEGORIES: FoodCategory[] = ["American", "Chinese", "Indian", "Italian", "Korean", "Mexican", "Other"];
+type FoodCategory = "American" | "Chinese" | "Mexican";
+
+const CATEGORIES: FoodCategory[] = ["American", "Chinese", "Mexican"];
  
 const inputClass =
   "[&_input]:bg-[#969696] [&_input]:border-none [&_input]:rounded-lg [&_input]:text-white [&_input]:placeholder-[#555]";
@@ -29,7 +29,6 @@ const selectClass =
   "[&_select]:bg-[#969696] [&_select]:border-none [&_select]:rounded-lg [&_select]:text-white";
 const labelClass = "block text-sm font-medium text-neutral-300 mb-1.5";
  
-// ─── Shared field-row component ────────────────────────────────────────────
 function FieldIcon({ icon: Icon }: { icon: React.ElementType }) {
   return (
     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#aaa] pointer-events-none">
@@ -38,15 +37,12 @@ function FieldIcon({ icon: Icon }: { icon: React.ElementType }) {
   );
 }
  
-// ─── Main Page ──────────────────────────────────────────────────────────────
 const MyBusinessPage = () => {
   const router = useRouter();
   const { user, isLoggedIn, isCheckingAuth } = useAuth();
  
   const [isLoadingBusiness, setIsLoadingBusiness] = useState(true);
   const [existingBusiness, setExistingBusiness] = useState<BusinessModel | null>(null);
- 
-  // Shared form state (used for both edit & create)
   const [businessName, setBusinessName] = useState("");
   const [businessHours, setBusinessHours] = useState("");
   const [businessPhoneNumber, setBusinessPhoneNumber] = useState("");
@@ -62,14 +58,12 @@ const MyBusinessPage = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [justSaved, setJustSaved] = useState(false);
  
-  // ── Auth guard ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (!isCheckingAuth && !isLoggedIn) {
       router.push("/LoginUser");
     }
   }, [isCheckingAuth, isLoggedIn, router]);
  
-  // ── Load existing business if owner has one ────────────────────────────
   useEffect(() => {
     if (!user || isCheckingAuth) return;
  
@@ -80,11 +74,9 @@ const MyBusinessPage = () => {
 
     const fetchBusiness = async () => {
       try {
-        // Look up this owner's business directly from the backend by their userId.
         const biz: BusinessModel | null = await getBusinessByOwnerId(user.userId);
         if (biz && biz.businessId) {
           setExistingBusiness(biz);
-          // Pre-fill form with current values
           setBusinessName(biz.businessName ?? "");
           setBusinessHours(biz.businessHours ?? "");
           setBusinessPhoneNumber(biz.businessPhoneNumber ?? "");
@@ -105,7 +97,6 @@ const MyBusinessPage = () => {
     fetchBusiness();
   }, [user, isCheckingAuth]);
  
-  // ── Fill address fields from the device's current location ─────────────
   const handleUseLocation = (location: ReverseGeocodeResult) => {
     setErrorMessage("");
     if (location.streetName) setStreetName(location.streetName);
@@ -115,7 +106,6 @@ const MyBusinessPage = () => {
     setSuccessMessage("Location detected — review the address and save.");
   };
 
-  // ── Validate shared fields ─────────────────────────────────────────────
   const validate = (): string | null => {
     if (!businessName.trim()) return "Business name is required.";
     if (!businessHours.trim()) return "Business hours are required.";
@@ -128,7 +118,6 @@ const MyBusinessPage = () => {
     return null;
   };
  
-  // ── Save edits to existing business ────────────────────────────────────
   const handleSaveEdit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
@@ -172,7 +161,6 @@ const MyBusinessPage = () => {
     }
   };
  
-  // ── Create a new business ───────────────────────────────────────────────
   const handleCreateBusiness = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
@@ -222,7 +210,6 @@ const MyBusinessPage = () => {
     }
   };
  
-  // ── Guards ─────────────────────────────────────────────────────────────
   if (isCheckingAuth || isLoadingBusiness) {
     return (
       <div className="min-h-screen bg-[#2D2D2D] flex items-center justify-center">
@@ -236,7 +223,6 @@ const MyBusinessPage = () => {
  
   if (!isLoggedIn || !user) return null;
  
-  // Non-business accounts shouldn't reach this page — redirect them
   if (!user.isBusinessOwner) {
     return (
       <div className="min-h-screen bg-[#2D2D2D] flex flex-col items-center justify-center gap-6 text-white">
@@ -256,10 +242,8 @@ const MyBusinessPage = () => {
   const pageTitle = hasRegisteredBusiness ? "My Business" : "Register Your Business";
   const navTitle = hasRegisteredBusiness ? "My Business" : "Register Business";
  
-  // ── Shared form body ────────────────────────────────────────────────────
   const formBody = (
     <div className="space-y-5">
-      {/* Business Info section */}
       <div className="pb-2 border-b border-[#ffffff22]">
         <p className="text-xs font-semibold uppercase tracking-widest text-[#C95A23] mb-4">Business Info</p>
         <div className="space-y-4">
@@ -348,8 +332,6 @@ const MyBusinessPage = () => {
           </div>
         </div>
       </div>
- 
-      {/* Location section */}
       <div>
         <p className="text-xs font-semibold uppercase tracking-widest text-[#C95A23] mb-4">Current Location</p>
         <div className="space-y-4">
@@ -423,10 +405,8 @@ const MyBusinessPage = () => {
     </div>
   );
  
-  // ─────────────────────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-[#2D2D2D] font-sans text-neutral-200 pb-20 overflow-x-hidden">
-      {/* Header */}
       <header className="flex pt-5 px-10 bg-[#191818]">
         <div className="flex justify-center flex-col mx-auto">
           <Link href="/">
@@ -441,9 +421,7 @@ const MyBusinessPage = () => {
           </Link>
         </div>
       </header>
- 
       <main>
-        {/* Hero banner + nav */}
         <div className="bg-[#191818] ps-35 lg:ps-70 w-full">
           <h2 className="py-12 text-5xl font-extralight text-neutral-100">
             Hello, {user.username}
@@ -462,7 +440,6 @@ const MyBusinessPage = () => {
             >
               Change Password
             </Link>
-            {/* Business tab — active */}
             <Link
               href="/MyBusiness"
               className="border-b-2 border-[#C95A23] pb-1 text-neutral-50 hover:text-white"
@@ -471,8 +448,6 @@ const MyBusinessPage = () => {
             </Link>
           </nav>
         </div>
- 
-        {/* ── EDIT EXISTING BUSINESS ─────────────────────────────────────── */}
         {hasRegisteredBusiness ? (
           <>
           <div className="mx-8 md:mx-20 lg:mx-40 xl:mx-56 p-8 bg-[#484848] text-white rounded-lg mt-12">
@@ -492,8 +467,6 @@ const MyBusinessPage = () => {
                 </Link>
               )}
             </div>
- 
-            {/* Avatar + name row */}
             <div className="flex items-center gap-4 mb-6 p-4 bg-[#3a3a3a] rounded-lg">
               <Avatar rounded size="lg" />
               <div>
@@ -552,9 +525,7 @@ const MyBusinessPage = () => {
           )}
           </>
         ) : (
-          /* ── REGISTER NEW BUSINESS ─────────────────────────────────────── */
           <div className="mx-8 md:mx-20 lg:mx-40 xl:mx-56 p-8 bg-[#484848] text-white rounded-lg mt-12">
-            {/* Empty state callout */}
             <div className="flex flex-col items-center text-center py-6 mb-8 border-b border-[#ffffff22]">
               <div className="w-16 h-16 rounded-full bg-[#3a3a3a] flex items-center justify-center mb-4">
                 <Store size={32} className="text-[#C95A23]" />
