@@ -246,7 +246,7 @@
 
 "use client";
 
-import { FormEvent, ChangeEvent, useState } from "react";
+import { FormEvent, ChangeEvent, useState, useEffect, useRef } from "react";
 import { Avatar, Button, TextInput } from "flowbite-react";
 import { createAccount, getUserByUsername, login as loginUser } from "@/data/lib/user-services";
 import { useRouter } from "next/navigation";
@@ -274,12 +274,30 @@ const initialForm: CreateAccountForm = {
 
 export default function CreateAccountPage() {
     const { push } = useRouter();
-    const { login } = useAuth();
 
     const [formData, setFormData] = useState<CreateAccountForm>(initialForm);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const { login, isLoggedIn, isCheckingAuth } = useAuth();
+
+    // Set to true right before we log a brand-new user in, so the guard effect
+    // below doesn't bounce them to "/" and clobber the post-signup redirect.
+    const justSignedUp = useRef(false);
+
+    useEffect(() => {
+        if (!isCheckingAuth && isLoggedIn && !justSignedUp.current) {
+            push("/");
+        }
+    }, [isCheckingAuth, isLoggedIn, push]);
+
+    if (isCheckingAuth || isLoggedIn) {
+        return (
+            <div className="min-h-screen bg-[#2D2D2D] flex items-center justify-center text-white">
+                <p>Loading...</p>
+            </div>
+        );
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { id, value, type, checked } = e.target;
@@ -370,6 +388,10 @@ export default function CreateAccountPage() {
                 return;
             }
 
+            // Mark before login() so the guard effect won't redirect to "/"
+            // when isLoggedIn flips to true on the next render.
+            justSignedUp.current = true;
+
             login(loginResult.token, {
                 userId: fullUser.userId,
                 username: fullUser.username,
@@ -380,8 +402,9 @@ export default function CreateAccountPage() {
             setSuccess("Account created successfully.");
             setFormData(initialForm);
 
+            // Business owners go straight to registering their business.
             if (fullUser.isBusinessOwner) {
-                push("/CreateBusiness");
+                push("/MyBusiness");
                 return;
             }
 

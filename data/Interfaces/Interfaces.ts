@@ -39,20 +39,9 @@ export interface UserAccountInfo { //This is the data being sent to the backend 
     isBusinessOwner: boolean;
 }
 
-export interface ReviewModel {
-    id: number,
-    businessId: number,
-    date: Date,
-    reviewerName: string,
-    reviewTitle: string,
-    reviewDescription: string,
-    reviewScore: number,
-    userId: number,
-    userReview: UserModel
-}
-
 export interface BusinessModel {
     businessId: number,
+    ownerId?: number,   // The userId of the business-owner account that owns this business
     businessName: string,
     businessHours: string,
     businessPhoneNumber: string,
@@ -64,7 +53,6 @@ export interface BusinessModel {
     zipCode: number,
     businessReviews: ReviewModel[],
 
-    //What should be added to the backend (the '?' means they are optional)
     favorites?: FavoritesModel[]    //Placing this here will allow us to see the whole favorited entry from the database, showing the user and business objects, their Id's and the id number of the favorite entry
 }
 
@@ -91,8 +79,6 @@ export interface UpdateUserProfileRequest {
     email: string;
 }
 
-//Sample Interface that we need to add in the backend
-//A Many-to-many relationship for favorited businesses
 export interface FavoritesModel {
     id: number,
     userId: number,
@@ -108,6 +94,18 @@ export interface FavoriteCreateRequest{
     businessId: number
 }
 
+export interface ReviewModel {
+    id: number,
+    businessId: number,
+    date: Date,
+    reviewerName: string,
+    reviewTitle: string,
+    reviewDescription: string,
+    reviewScore: number,
+    userId: number,
+    userReview: UserModel
+}
+
 export interface ReviewDataRequest {
     businessId: number;
     date: string;
@@ -119,6 +117,7 @@ export interface ReviewDataRequest {
 }
 
 export interface CreateBusinessRequest {
+    ownerId: number;
     businessName: string;
     businessHours: string;
     businessPhoneNumber: string;
@@ -136,6 +135,8 @@ export interface MenuItemModel {
   name: string;
   description: string;
   price: number;
+  category?: string;
+  imageUrl?: string | null;
 }
 
 export interface CreateMenuItemModel {
@@ -143,4 +144,6 @@ export interface CreateMenuItemModel {
   name: string;
   description: string;
   price: number;
+  category?: string;
+  imageUrl?: string | null;
 }

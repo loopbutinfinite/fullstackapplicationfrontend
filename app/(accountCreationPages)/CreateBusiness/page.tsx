@@ -180,6 +180,12 @@ const CreateBusiness = () => {
             return;
         }
 
+        if (!user.userId) {
+            setMessage('Could not identify your account. Please log in again.');
+            router.push('/LoginUser');
+            return;
+        }
+
         const parsedZipCode = Number(zipCode);
 
         if (Number.isNaN(parsedZipCode)) {
@@ -188,6 +194,7 @@ const CreateBusiness = () => {
         }
 
         const newBusiness = {
+            ownerId: user.userId,
             businessName: businessName.trim(),
             businessHours: businessHours.trim(),
             businessPhoneNumber: businessPhoneNumber.trim(),
@@ -231,7 +238,7 @@ const CreateBusiness = () => {
             <div className="min-h-screen bg-[#2D2D2D] text-white flex flex-col items-center justify-center gap-4">
                 <h1 className="text-3xl font-bold text-[#C95A23]">Access Denied</h1>
                 <p>Only business owner accounts can create a business.</p>
-                <Button className="bg-[#C95A23]" onClick={() => router.push('/')}>
+                <Button className="bg-[#C95A23] dark:bg-[#C95A23] hover:bg-[#C95A23] dark:hover:bg-[#4a4a49]" onClick={() => router.push('/')}>
                     Go Home
                 </Button>
             </div>

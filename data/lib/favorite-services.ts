@@ -1,6 +1,7 @@
 import { FavoriteCreateRequest, FavoritesModel } from "../Interfaces/Interfaces";
+import { API_BASE_URL } from "./api-config";
 
-const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/Favorite/";
+const url = API_BASE_URL + "Favorite/";
 
 export const GetFavorites = async (token: string) => {
     const res = await fetch(url + "GetFavorites", {

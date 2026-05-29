@@ -1,6 +1,7 @@
 import { ChangePasswordRequest, UpdateUserProfileRequest, UserAccountInfo, UserInfo, UserModel } from "../Interfaces/Interfaces";
+import { API_BASE_URL } from "./api-config";
 
-const url = "https://csa-2526-munchr-a8dbh8ckfddrewh7.westus3-01.azurewebsites.net/User/";
+const url = API_BASE_URL + "User/";
 
 export const createAccount = async (user: UserAccountInfo) => {
   const res = await fetch(url + "CreateAccount", {
@@ -22,27 +23,6 @@ export const createAccount = async (user: UserAccountInfo) => {
   console.log(`Account creation successful: ${data.success}`)
   return data.success;
 };
-
-// export const login = async (user: UserInfo) => {
-//     const res = await fetch(url + "Login", {
-//         method: "POST", 
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(user)
-//     });
-
-//     if(!res.ok){
-//         const data = await res.json();
-//         const message = data.message;
-
-//         console.log(message);
-//         return data.success;
-//     }
-
-//     const data = await res.json();
-//     return data.success;
-// };
 
 export const login = async (user: UserInfo) => {
   const res = await fetch(url + "Login", {
@@ -153,15 +133,11 @@ export const getUserById = async (id: number) => {
   const res = await fetch(url + `GetUserById/${id}`)
 
   if (!res.ok) {
-    const data = await res.json();
-    const message = data.message;
-
-    console.log(message);
-    return data.message;
+    console.log("Failed to fetch user by id:", id);
+    return null;
   }
 
-  const data = await res.json();
-  return data.success;
+  return await res.json();
 };
 
 export const getUserByUsername = async (username: string) => {
