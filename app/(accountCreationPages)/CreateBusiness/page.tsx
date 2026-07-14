@@ -30,7 +30,6 @@ const CreateBusiness = () => {
     useEffect(() => {
         if (!isCheckingAuth && !isLoggedIn) {
             router.push('/LoginUser');
-            // Change this route if your login page has a different path
         }
     }, [isCheckingAuth, isLoggedIn, router]);
 
